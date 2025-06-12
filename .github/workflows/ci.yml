@@ -49,7 +49,7 @@ jobs:
         run: bun ci:generate-coverage-report
 
       - name: Extract coverage percentage
-        id: coverage
+        id: coverage
         run: |
           COVERAGE=$(npx nyc report --reporter=text-summary --temp-dir=coverage | grep "Lines" | awk '{print $3}' | sed 's/%//')
           echo "percentage=$COVERAGE" >> $GITHUB_OUTPUT
