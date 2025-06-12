@@ -1,5 +1,8 @@
 name: CI
 
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
 on:
   push:
     branches:
@@ -19,7 +22,7 @@ jobs:
           filter: tree:0
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v1
+      - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -30,11 +33,34 @@ jobs:
       # - run: bunx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="e2e-ci"
 
       - run: bun install --no-cache
-      - run: bun cypress install
+      - run: bunx cypress install
       - uses: nrwl/nx-set-shas@v4
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
       # - run: bun nx-cloud record -- echo Hello World
       # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
       # When you enable task distribution, run the e2e-ci task instead of e2e
-      - run: bun nx affected -t lint test build e2e
+      - run: bun ci:lint
+      - run: bun ci:build
+      - run: bun ci:test
+      - run: bun ci:test-coverage-merge
+
+      - name: Generate merged coverage report
+        run: bun ci:generate-coverage-report
+
+      - name: Extract coverage percentage
+        id: coverage
+        run: |
+          COVERAGE=$(npx nyc report --reporter=text-summary --temp-dir=coverage | grep "Lines" | awk '{print $3}' | sed 's/%//')
+          echo "percentage=$COVERAGE" >> $GITHUB_OUTPUT
+
+      - name: Create Coverage Badge
+        if: github.ref == 'refs/heads/main'
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_TOKEN }}
+          gistID: 5e5f0185a79b23d8609188502a8ce8af
+          filename: coverage-badge.json
+          label: Coverage
+          message: ${{ steps.coverage.outputs.percentage }}%
+          color: ${{ steps.coverage.outputs.percentage >= 80 && 'green' || steps.coverage.outputs.percentage >= 60 && 'yellow' || 'red' }}

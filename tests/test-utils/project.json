@@ -1,0 +1,52 @@
+{
+  "name": "test-utils",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tests/test-utils/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": [
+        "dist/{projectRoot}"
+      ],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/tests/test-utils",
+        "main": "tests/test-utils/src/index.ts",
+        "tsConfig": "tests/test-utils/tsconfig.lib.json",
+        "assets": [
+          "tests/test-utils/*.md"
+        ],
+        "format": [
+          "cjs"
+        ]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "tests/test-utils/jest.config.ts"
+      }
+    }
+  }
+}

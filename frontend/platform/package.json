@@ -1,0 +1,10 @@
+{
+  "name": "@calm-mail/frontend-platform",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^20.0.3",
+    "@ionic/angular": "^8.6.1",
+    "@capacitor/core": "^7.3.0"
+  },
+  "sideEffects": false
+}

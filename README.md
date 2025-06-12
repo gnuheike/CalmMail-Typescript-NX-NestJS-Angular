@@ -1,82 +1,162 @@
-# Calmail
+# CalmMail
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/gnuheike/5e5f0185a79b23d8609188502a8ce8af/raw/coverage-badge.json)
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+CalmMail is a lightweight, cross-platform email client application that provides essential email functionality across desktop and mobile devices. The application focuses on simplicity, reliability, and seamless synchronization while maintaining a consistent user experience across all platforms.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Features
 
-## Finish your CI setup
+### Email Management
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/xW2MyXmirn)
+- **Inbox Management**: View, read, and organize incoming emails
+- **Email Composition**: Create, edit, and send emails with basic formatting
+- **Draft System**: Save work-in-progress emails for later completion
+- **Email Organization**: Move emails between inbox, sent, and trash folders
+- **Read Status**: Mark emails as read/unread for better tracking
 
+### Account Management
 
-## Run tasks
+- **Multi-Account Support**: Add and manage multiple email accounts (IMAP/POP3)
+- **Authentication**: Secure login with standard email protocols
+- **Account Settings**: Configure and modify email account parameters
 
-To run the dev server for your app, use:
+### Synchronization
 
-```sh
-npx nx serve calmail
+- **Cross-Device Sync**: Keep emails synchronized across all devices
+- **Offline Mode**: Basic offline functionality with sync when connected
+- **Real-time Updates**: Automatic email fetching and status updates
+
+### User Interface
+
+- **Responsive Design**: Optimized layouts for desktop, tablet, and mobile
+- **Dark/Light Themes**: User preference-based theming
+- **Intuitive Navigation**: Simple folder structure and email threading
+
+## Technical Architecture
+
+CalmMail is built using an Nx monorepo structure with the following components:
+
+### Project Structure
+
+```
+calm-mail/
+├── apps/
+│   ├── web/              # Web app (Angular + Ionic)
+│   └── server/           # NestJS backend
+├── shared/
+│   ├── contract/         # Contract between frontend and backend
+│   └── domain/           # Domain models and business logic
+├── frontend/
+│   └── platform/         # Platform-specific frontend code
 ```
 
-To create a production bundle:
+### Technology Stack
+
+- **Frontend**: Angular + Ionic
+- **Desktop**: Electron
+- **Mobile**: Capacitor
+- **Backend**: NestJS (Clean Architecture + DDD)
+- **Monorepo**: Nx Workspace
+- **Database**: IndexedDB (client) + PostgreSQL (server)
+- **API Communication**: tRPC for type-safe API communication
+
+### Architecture Highlights
+
+- **Clean Architecture**: Separation of concerns with domain-driven design
+- **Cross-Platform**: Single codebase for web, desktop, and mobile
+- **Offline-First**: Local storage with synchronization capabilities
+- **Type Safety**: End-to-end type safety from database to UI
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later)
+- npm or Bun package manager
+- PostgreSQL (for server-side storage)
+
+### Installation
+
+1. Clone the repository:
 
 ```sh
-npx nx build calmail
+git clone https://github.com/your-username/calm-mail.git
+cd calm-mail
 ```
 
-To see all available targets to run for a project, run:
+2. Install dependencies:
 
 ```sh
-npx nx show project calmail
+npm install
+# or if using Bun
+bun install
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
+3. Build the project:
 
 ```sh
-npx nx g @nx/angular:app demo
+npm run build-all
+# or
+nx run-many --target=build --all
 ```
 
-To generate a new library, use:
+### Running the Application
+
+#### Development Mode
+
+To run the web application in development mode:
 
 ```sh
-npx nx g @nx/angular:lib mylib
+npm run serve
+# or
+nx serve web
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+To run the server in development mode:
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+```sh
+nx serve server
+```
 
+#### Production Build
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+To create a production build:
 
-## Install Nx Console
+```sh
+nx build web --configuration=production
+nx build server --configuration=production
+```
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### Testing
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+Run all tests:
 
-## Useful links
+```sh
+npm run test-all
+# or
+nx run-many --target=test --all
+```
 
-Learn more:
+## Development Status
 
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+CalmMail is currently in Phase 1 (MVP) with the following focus:
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Basic email reading and sending
+- Single account support
+- Desktop-first development
+- Local storage implementation
+
+Future phases will include:
+
+- Multi-platform support (mobile apps)
+- Multi-account management
+- Cross-device synchronization
+- Enhanced features (advanced search, filtering, etc.)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

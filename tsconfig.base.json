@@ -8,13 +8,39 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "target": "ES2022",
+    "module": "ES2022",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "paths": {
+      "@calm-mail/contract": [
+        "shared/contract/index.ts"
+      ],
+      "@calm-mail/frontend-platform": [
+        "frontend/platform/index.ts"
+      ],
+      "@calm-mail/shared-domain": [
+        "shared/domain/index.ts"
+      ],
+      "@calm-mail/tests-utils": [
+        "tests/test-utils/src/index.ts"
+      ]
+    }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
