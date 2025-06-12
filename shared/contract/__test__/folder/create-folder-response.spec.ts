@@ -37,7 +37,6 @@ describe('CreateFolderResponseSchema - Valid Cases', () => {
   });
 });
 
-// eslint-disable-next-line max-lines-per-function
 describe('CreateFolderResponseSchema - Invalid Cases', () => {
   it('should reject a response without folder object', () => {
     const invalidResponse = {};

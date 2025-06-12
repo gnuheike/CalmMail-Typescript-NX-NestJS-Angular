@@ -40,16 +40,16 @@ The project is built upon the principles of **Clean Architecture** and **Separat
 
 ## 3. Technology Stack
 
-| Category           | Technology                                               |
-|--------------------|----------------------------------------------------------|
-| **Monorepo**       | Nx (with Bun as the package manager/runner)              |
-| **Backend**        | NestJS                                                   |
-| **API Layer**      | ts-rest (for type-safe, end-to-end API communication)     |
-| **Frontend**       | Angular (v20+), Ionic (v8+)                              |
-| **Cross-Platform** | Capacitor (iOS/Android), Electron (Desktop)              |
-| **Type Safety**    | TypeScript (strict mode), Zod (for schema validation)    |
-| **Real-time**      | WebSockets via NestJS (`@nestjs/websockets`)            |
-| **Testing**        | Jest                                                     |
+| Category           | Technology                                            |
+|--------------------|-------------------------------------------------------|
+| **Monorepo**       | Nx (with Bun as the package manager/runner)           |
+| **Backend**        | NestJS                                                |
+| **API Layer**      | ts-rest (for type-safe, end-to-end API communication) |
+| **Frontend**       | Angular (v20+), Ionic (v8+)                           |
+| **Cross-Platform** | Capacitor (iOS/Android), Electron (Desktop)           |
+| **Type Safety**    | TypeScript (strict mode), Zod (for schema validation) |
+| **Real-time**      | WebSockets via NestJS (`@nestjs/websockets`)          |
+| **Testing**        | Jest                                                  |
 
 ---
 
@@ -177,3 +177,8 @@ These are the fundamental rules that apply across the entire codebase.
 * **ts-rest:** [https://ts-rest.com](https://ts-rest.com)
 * **Bun:** [https://bun.sh](https://bun.sh)
 * **Angular:** [https://angular.dev](https://angular.dev)
+
+## 10. Folders structure
+
+* We don't use src folders for libraries, all files are located in the library root
+* For tests we use __test__ folder located in library root

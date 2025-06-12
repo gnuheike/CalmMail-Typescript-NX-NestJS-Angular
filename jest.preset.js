@@ -34,7 +34,7 @@ module.exports = {
     '!**/e2e/**',
     '!**/cypress/**',
     '!**/*.routes.ts',
-    '!**/__tests__/**',
+    '!**/__test__/**',
   ],
   coverageThreshold: {
     global: {

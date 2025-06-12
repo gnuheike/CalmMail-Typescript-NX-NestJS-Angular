@@ -20,7 +20,6 @@ import {
  * These tests verify that the TypeScript types are correctly inferred from the Zod schemas.
  * They use TypeScript's type system to ensure that the types match the schemas.
  */
-// eslint-disable-next-line max-lines-per-function
 describe('Folder Types - Type Inference Tests', () => {
   it('should correctly infer Folder type from FolderSchema', () => {
     // This is a type-level test that doesn't execute at runtime

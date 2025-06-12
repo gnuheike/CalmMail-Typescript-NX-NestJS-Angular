@@ -12,6 +12,14 @@ export default [
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
+    //ignore anything in any __test__ folder
+    ignores: ['**/__test__/**'],
+    rules: {
+      'max-lines-per-function': ['error', 50],
+    },
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.base.json'],
@@ -20,7 +28,7 @@ export default [
     },
     plugins: {
       '@angular-eslint': angular,
-      'unicorn': unicorn,
+      unicorn: unicorn,
     },
     rules: {
       '@nx/enforce-module-boundaries': [
@@ -41,7 +49,7 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-non-null-assertion': 'error',
       '@typescript-eslint/prefer-readonly': 'error',
-      '@typescript-eslint/array-type': ['error', { 'default': 'array-simple' }],
+      '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
       '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
       '@angular-eslint/component-class-suffix': 'error',
       '@angular-eslint/directive-class-suffix': 'error',
@@ -51,20 +59,19 @@ export default [
       '@angular-eslint/component-selector': [
         'error',
         {
-          'type': 'element',
-          'prefix': 'app',
-          'style': 'kebab-case'
-        }
+          type: 'element',
+          prefix: 'app',
+          style: 'kebab-case',
+        },
       ],
-      'complexity': ['error', 10],
-      'max-lines-per-function': ['error', 50],
+      complexity: ['error', 10],
       'max-depth': ['error', 4],
       'unicorn/filename-case': [
         'error',
         {
-          case: 'kebabCase'
-        }
-      ]
+          case: 'kebabCase',
+        },
+      ],
     },
   },
   {
@@ -74,7 +81,7 @@ export default [
     },
     rules: {
       '@angular-eslint/template/eqeqeq': 'error',
-      '@angular-eslint/template/no-negated-async': 'error'
-    }
+      '@angular-eslint/template/no-negated-async': 'error',
+    },
   },
 ];

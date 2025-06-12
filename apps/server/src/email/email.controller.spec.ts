@@ -4,8 +4,6 @@ import { CreateEmailUseCase, GetEmailsUseCase } from '@calm-mail/shared-domain';
 
 describe('EmailController', () => {
   let controller: EmailController;
-  let getEmailsUseCase: GetEmailsUseCase;
-  let createEmailUseCase: CreateEmailUseCase;
 
   beforeEach(async () => {
     // Create mock implementations of the use cases
@@ -32,8 +30,6 @@ describe('EmailController', () => {
     }).compile();
 
     controller = module.get<EmailController>(EmailController);
-    getEmailsUseCase = module.get<GetEmailsUseCase>(GetEmailsUseCase);
-    createEmailUseCase = module.get<CreateEmailUseCase>(CreateEmailUseCase);
   });
 
   it('should be defined', () => {

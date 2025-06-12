@@ -31,8 +31,14 @@
       "@calm-mail/frontend-platform": [
         "frontend/platform/index.ts"
       ],
+      "@calm-mail/shared-contract-mocks": [
+        "shared/contract-mocks/index.ts"
+      ],
       "@calm-mail/shared-domain": [
         "shared/domain/index.ts"
+      ],
+      "@calm-mail/frontend-shared-domain-mock-adapter": [
+        "frontend/shared-domain-mock-adapter/index.ts"
       ],
       "@calm-mail/tests-utils": [
         "tests/test-utils/src/index.ts"

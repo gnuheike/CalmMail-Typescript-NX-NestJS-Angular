@@ -1,0 +1,10 @@
+{
+  "name": "@calm-mail/shared-contract-mocks",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "types": "./index.d.ts",
+  "peerDependencies": {
+    "@calm-mail/contract": "*"
+  }
+}
