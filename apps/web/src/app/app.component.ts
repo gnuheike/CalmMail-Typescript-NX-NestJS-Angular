@@ -1,18 +1,23 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { PlatformDetectionService } from '@calm-mail/frontend-platform';
+import { IconsLoaderService } from '@calm-mail/frontend-presentation';
+import { PlatformDetectionService } from '@calm-mail/frontend-application';
 
 @Component({
-  imports: [RouterModule, IonApp, IonRouterOutlet],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    imports: [RouterModule, IonApp, IonRouterOutlet],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  private readonly platformDetectionService = inject(PlatformDetectionService);
+    private readonly platformDetectionService = inject(PlatformDetectionService);
+    protected readonly isRouterAnimationsEnabled = computed<boolean>(() => {
+        return !this.platformDetectionService.isWeb();
+    });
+    private readonly iconsLoaderService = inject(IconsLoaderService);
 
-  protected readonly isRouterAnimationsEnabled = computed<boolean>(() => {
-    return !this.platformDetectionService.isWeb();
-  });
+    constructor() {
+        this.iconsLoaderService.registerIcons();
+    }
 }

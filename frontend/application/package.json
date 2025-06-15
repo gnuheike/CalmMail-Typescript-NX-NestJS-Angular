@@ -1,0 +1,8 @@
+{
+  "name": "@calm-mail/frontend-application",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@calm-mail/contract": "^20.0.0"
+  },
+  "sideEffects": false
+}

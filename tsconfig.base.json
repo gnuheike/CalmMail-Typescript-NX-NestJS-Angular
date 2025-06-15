@@ -25,20 +25,26 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "paths": {
+      "@calm-mail/backend-domain": [
+        "backend/domain/index.ts"
+      ],
+      "@calm-mail/backend-use-case-in-memory-adapter": [
+        "backend/use-case-in-memory-adapter/index.ts"
+      ],
       "@calm-mail/contract": [
         "shared/contract/index.ts"
       ],
-      "@calm-mail/frontend-platform": [
-        "frontend/platform/index.ts"
+      "@calm-mail/frontend-application": [
+        "frontend/application/index.ts"
       ],
-      "@calm-mail/shared-contract-mocks": [
-        "shared/contract-mocks/index.ts"
+      "@calm-mail/frontend-infrastructure": [
+        "frontend/infrastructure/index.ts"
+      ],
+      "@calm-mail/frontend-presentation": [
+        "frontend/presentation/index.ts"
       ],
       "@calm-mail/shared-domain": [
-        "shared/domain/index.ts"
-      ],
-      "@calm-mail/frontend-shared-domain-mock-adapter": [
-        "frontend/shared-domain-mock-adapter/index.ts"
+        "shared/shared-domain/index.ts"
       ],
       "@calm-mail/tests-utils": [
         "tests/test-utils/src/index.ts"

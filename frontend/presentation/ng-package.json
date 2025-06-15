@@ -1,0 +1,12 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/frontend/presentation",
+  "lib": {
+    "entryFile": "index.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "@calm-mail/contract",
+    "@calm-mail/shared-domain",
+    "@calm-mail/frontend-application"
+  ]
+}

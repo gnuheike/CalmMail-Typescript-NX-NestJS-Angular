@@ -1,4 +1,11 @@
 {
   "singleQuote": true,
-  "printWidth": 160
+  "printWidth": 160,
+  "importOrderParserPlugins": [
+    "typescript",
+    "jsx",
+    "decorators-legacy"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

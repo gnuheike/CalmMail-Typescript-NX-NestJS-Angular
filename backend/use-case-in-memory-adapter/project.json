@@ -1,0 +1,44 @@
+{
+  "name": "use-case-in-memory-adapter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "backend/use-case-in-memory-adapter",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/backend/use-case-in-memory-adapter/domain",
+        "main": "backend/use-case-in-memory-adapter/index.ts",
+        "tsConfig": "backend/use-case-in-memory-adapter/tsconfig.lib.json",
+        "assets": [
+          "backend/use-case-in-memory-adapter/*.md"
+        ],
+        "format": [
+          "cjs"
+        ],
+        "generateLockfile": false
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "use-case-in-memory-adapter/domain/jest.config.ts"
+      }
+    }
+  }
+}

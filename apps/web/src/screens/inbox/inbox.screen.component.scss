@@ -1,0 +1,41 @@
+// Basic styling for the inbox screen layout
+
+// Sidebar styling
+.sidebar-placeholder {
+  padding: 16px;
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-style: italic;
+}
+
+// Loading and error message styling
+.loading-placeholder {
+  padding: 16px;
+  text-align: center;
+  color: var(--ion-color-medium);
+}
+
+.error-message {
+  padding: 16px;
+  text-align: center;
+  color: var(--ion-color-danger);
+}
+
+// Desktop sidebar specific styling
+.desktop-sidebar {
+  min-width: 300px;
+  border-left: 1px solid var(--ion-color-light);
+}
+
+// Make sure the split pane takes full height
+ion-split-pane {
+  height: 100%;
+}
+
+// Ensure content areas have proper padding
+ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+}

@@ -1,0 +1,45 @@
+<ion-split-pane contentId="main-content" when="md">
+    <ion-menu contentId="main-content" type="overlay">
+        <!-- Mobile folder sidebar placeholder -->
+        <ion-header>
+            <ion-toolbar>
+                <ion-title>Folders</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            @if (foldersLoading$()) {
+                <ion-progress-bar type="indeterminate"></ion-progress-bar>
+            }
+            @if (foldersError$()) {
+                <div class="error-message">{{ foldersError$() }}</div>
+            }
+            <lib-folder-list (folderSelectedEmitterRef)="selectFolder($event)"
+                             [folders]="folders$()"></lib-folder-list>
+        </ion-content>
+    </ion-menu>
+
+    <div class="ion-page" id="main-content">
+        @if (emailsLoading$()) {
+            <ion-progress-bar type="indeterminate"></ion-progress-bar>
+        }
+        <ion-header>
+            <ion-toolbar>
+                <ion-buttons slot="start">
+                    <ion-menu-button></ion-menu-button>
+                </ion-buttons>
+                @let selectedFolder = selectedFolder$();
+                @if (selectedFolder) {
+                    <ion-title>CalmMail - {{ selectedFolder.displayName }}</ion-title>
+                }
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content>
+            @if (emailsError$()) {
+                <div class="error-message">{{ emailsError$() }}</div>
+            }
+            <lib-email-list [emails]="emails$()"></lib-email-list>
+        </ion-content>
+    </div>
+</ion-split-pane>
+

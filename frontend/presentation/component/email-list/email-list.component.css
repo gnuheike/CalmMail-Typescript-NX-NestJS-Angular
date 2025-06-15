@@ -1,0 +1,61 @@
+/* Email list styles */
+ion-list {
+  padding: 0;
+}
+
+.email-item {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --min-height: 72px;
+  cursor: pointer;
+}
+
+.email-item:hover {
+  --background: var(--ion-color-light-shade);
+}
+
+.email-item.unread {
+  --background: rgba(var(--ion-color-primary-rgb), 0.05);
+  font-weight: 500;
+}
+
+.email-container {
+  width: 100%;
+  padding: 8px 0;
+}
+
+.email-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.email-sender {
+  font-weight: 500;
+  color: var(--ion-color-dark);
+}
+
+.email-date {
+  font-size: 0.8rem;
+  color: var(--ion-color-medium);
+}
+
+.email-subject {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--ion-color-dark);
+}
+
+.email-preview {
+  font-size: 0.9rem;
+  color: var(--ion-color-medium);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-emails {
+  text-align: center;
+  color: var(--ion-color-medium);
+  font-style: italic;
+}

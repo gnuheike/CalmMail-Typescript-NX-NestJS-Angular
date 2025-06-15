@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import {
-  FolderSchema,
-  GetFoldersRequestSchema,
-  GetFoldersResponseSchema,
-  GetFolderStatsRequestSchema,
-  GetFolderStatsResponseSchema,
-  CreateFolderRequestSchema,
-  CreateFolderResponseSchema
+    CreateFolderRequestSchema,
+    CreateFolderResponseSchema,
+    FolderSchema,
+    GetFoldersRequestSchema,
+    GetFoldersResponseSchema,
+    GetFolderStatsRequestSchema,
+    GetFolderStatsResponseSchema
 } from './folder.schema';
 
 /**
@@ -14,6 +14,7 @@ import {
  * These types are used throughout the application for type safety
  */
 
+// Legacy types using plain string IDs
 export type Folder = z.infer<typeof FolderSchema>;
 export type GetFoldersRequest = z.infer<typeof GetFoldersRequestSchema>;
 export type GetFoldersResponse = z.infer<typeof GetFoldersResponseSchema>;

@@ -1,0 +1,46 @@
+{
+  "name": "frontend-infrastructure",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/infrastructure",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": [],
+  "implicitDependencies": [
+    "frontend-application"
+  ],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "frontend/infrastructure/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "frontend/infrastructure/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "frontend/infrastructure/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production",
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "frontend/infrastructure/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
