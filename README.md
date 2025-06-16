@@ -1,6 +1,9 @@
-# CalmMail
+# Calm Mail
 
 ![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/gnuheike/5e5f0185a79b23d8609188502a8ce8af/raw/coverage-badge.json)
+![Calm Mail](https://gnuheike.top/clouds.jpg)
+
+
 
 CalmMail is a lightweight, cross-platform email client application that provides essential email functionality across desktop and mobile devices. The application focuses on simplicity, reliability, and seamless synchronization while maintaining a consistent user experience across all platforms.
 
