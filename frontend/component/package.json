@@ -1,0 +1,8 @@
+{
+  "name": "@calm-mail/frontend-component",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@calm-mail/frontend-presentation": "*"
+  },
+  "sideEffects": false
+}

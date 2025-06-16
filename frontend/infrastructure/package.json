@@ -1,9 +1,12 @@
 {
   "name": "@calm-mail/frontend-infrastructure",
   "version": "0.0.1",
-  "peerDependencies": {
-    "@calm-mail/frontend-application": "*",
-    "@calm-mail/contract": "*"
-  },
-  "sideEffects": false
+  "private": true,
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "types": "./index.d.ts",
+  "dependencies": {
+    "@calm-mail/contract": "*",
+    "@calm-mail/frontend-application": "*"
+  }
 }

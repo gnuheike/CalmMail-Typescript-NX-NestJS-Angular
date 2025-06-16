@@ -1,34 +1,30 @@
 {
-  "name": "frontend-presentation",
+  "name": "frontend/presentation",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "frontend/presentation",
-  "prefix": "lib",
   "projectType": "library",
   "tags": [],
-  "implicitDependencies": [
-    "frontend-application"
-  ],
   "targets": {
     "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
+        "{options.outputPath}"
       ],
       "options": {
-        "project": "frontend/presentation/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "frontend/presentation/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "frontend/presentation/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production",
-      "dependsOn": [
-        "^build"
-      ]
+        "outputPath": "dist/frontend/presentation",
+        "main": "frontend/presentation/index.ts",
+        "tsConfig": "frontend/presentation/tsconfig.lib.json",
+        "assets": [
+          "frontend/presentation/*.md"
+        ],
+        "format": [
+          "cjs"
+        ],
+        "generatePackageJson": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -38,9 +34,6 @@
       "options": {
         "jestConfig": "frontend/presentation/jest.config.ts"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

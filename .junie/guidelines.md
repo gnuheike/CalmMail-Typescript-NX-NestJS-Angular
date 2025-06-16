@@ -213,3 +213,114 @@ These are the fundamental rules that apply across the entire codebase.
 ## 10. Folders structure
 
 * We don't use src folders for libraries, all files are located in the library root
+
+- apps
+    - server
+        - app
+        - assets
+        - email
+        - folder
+    - web
+        - android
+        - ios
+        - public
+        - src
+            - app
+            - environment
+            - screens
+                - inbox
+- backend
+    - domain
+        - port
+            - use-case
+                - email
+                - folder
+    - use-case-in-memory-adapter
+        - infrastructure
+            - email
+            - folder
+- frontend
+    - application
+        - gateway
+        - service
+    - component
+        - email-list
+        - folder-list
+        - pipe
+    - infrastructure
+        - adapter
+            - mock
+                - email
+                - folder
+        - provider
+        - util
+    - presentation
+        - model
+        - provider
+        - service
+            - folder-icons
+            - icons-loader
+        - state
+            - inbox
+- shared
+    - contract
+        - email
+        - error-response
+        - folder
+        - pagination
+    - domain
+        - lib
+
+# Linting Guidelines for the Project
+
+To ensure code quality and consistency, follow these guidelines when working on the project:
+
+## Linting Tool
+
+The project uses **ESLint** with configurations tailored for TypeScript, JavaScript, and Angular, leveraging Nx presets.
+
+## Key Coding Standards
+
+### TypeScript
+
+- **Do not use `any`**: Always specify explicit types.
+- **Explicit Return Types**: Functions must define their return types.
+- **No Non-Null Assertions**: Avoid using `!`.
+- **Immutable Properties**: Use `readonly` for properties that don’t change.
+- **Consistent Types**: Prefer `Type[]` for arrays and `interface` for type definitions.
+
+### Functions
+
+- **Size Limit**: Must not exceed 50 lines.
+- **Complexity**: Cyclomatic complexity should be 10 or less.
+
+### Angular
+
+- **Class Suffixes**: Components end with `Component`, directives with `Directive` (e.g., `MyComponent`, `MyDirective`).
+- **Selectors**: Use element type, `app-` prefix, and kebab-case (e.g., `<app-my-component>`).
+- **Inputs/Outputs**: Do not rename them; implement lifecycle interfaces (e.g., `OnInit`).
+
+### Code Structure
+
+- **Nesting**: Maximum depth of 4 levels.
+- **Filenames**: Use kebab-case (e.g., `my-file.ts`).
+
+### Templates
+
+- **Strict Equality**: Use `===` in expressions.
+- **Async Pipes**: Avoid negation (e.g., `*ngIf="!asyncValue"`).
+
+## Module Boundaries
+
+Respect dependency constraints defined in the Nx workspace to maintain a modular architecture.
+
+## TypeScript Strict Mode
+
+The project enforces strict TypeScript practices. Check `tsconfig.json` for specific settings and ensure compliance.
+
+## Pre-Commit Checks
+
+Run ESLint and fix all reported issues before committing your code.
+
+By following these guidelines, you’ll help keep the project maintainable and scalable.
+

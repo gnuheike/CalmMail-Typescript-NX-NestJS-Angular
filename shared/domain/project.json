@@ -1,7 +1,7 @@
 {
-  "name": "shared-domain",
+  "name": "shared/domain",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "shared/shared-domain",
+  "sourceRoot": "shared/domain",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -11,11 +11,11 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/shared/shared-domain",
-        "main": "shared/shared-domain/index.ts",
-        "tsConfig": "shared/shared-domain/tsconfig.lib.json",
+        "outputPath": "dist/shared/domain",
+        "main": "shared/domain/index.ts",
+        "tsConfig": "shared/domain/tsconfig.lib.json",
         "assets": [
-          "shared/shared-domain/*.md"
+          "shared/domain/*.md"
         ],
         "format": [
           "cjs"
@@ -29,7 +29,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "shared/shared-domain/jest.config.ts"
+        "jestConfig": "shared/domain/jest.config.ts"
       }
     },
     "lint": {

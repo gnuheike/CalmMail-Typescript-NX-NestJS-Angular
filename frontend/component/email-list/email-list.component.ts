@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { EmailVm } from '../../model';
-import { FormatEmailDatePipe } from '../../pipe/format-email-date.pipe';
+import { EmailVm } from '@calm-mail/frontend-presentation';
+import { FormatEmailDatePipe } from '../pipe';
 
 @Component({
     selector: 'lib-email-list',

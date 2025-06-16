@@ -1,28 +1,27 @@
 {
-  "name": "frontend-application",
+  "name": "frontend/application",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "frontend/application",
-  "prefix": "lib",
   "projectType": "library",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
+        "{options.outputPath}"
       ],
       "options": {
-        "project": "frontend/application/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "frontend/application/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "frontend/application/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "outputPath": "dist/frontend/application",
+        "main": "frontend/application/index.ts",
+        "tsConfig": "frontend/application/tsconfig.lib.json",
+        "assets": [
+          "frontend/application/*.md"
+        ],
+        "format": [
+          "cjs"
+        ],
+        "generatePackageJson": true
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",

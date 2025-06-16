@@ -1,5 +1,5 @@
 {
-  "name": "backend-domain",
+  "name": "backend/domain",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "backend/domain",
   "projectType": "library",

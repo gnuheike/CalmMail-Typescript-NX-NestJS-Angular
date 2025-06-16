@@ -37,6 +37,9 @@
       "@calm-mail/frontend-application": [
         "frontend/application/index.ts"
       ],
+      "@calm-mail/frontend-component": [
+        "frontend/component/index.ts"
+      ],
       "@calm-mail/frontend-infrastructure": [
         "frontend/infrastructure/index.ts"
       ],
@@ -44,12 +47,17 @@
         "frontend/presentation/index.ts"
       ],
       "@calm-mail/shared-domain": [
-        "shared/shared-domain/index.ts"
+        "shared/domain/index.ts"
       ],
       "@calm-mail/tests-utils": [
-        "tests/test-utils/src/index.ts"
+        "test/utils/src/index.ts"
       ]
     }
+  },
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
   },
   "exclude": [
     "node_modules",

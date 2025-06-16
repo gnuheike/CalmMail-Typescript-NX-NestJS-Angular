@@ -38,6 +38,6 @@ find "$SEARCH_PATH" -name "*.ts" \
     -not -path "*/dist/*" \
     -not -name "index.ts" \
     -not -name "jest.config.ts" \
-    -exec sh -c 'echo "=== $1 ==="; cat "$1"; echo' _ {} \; | pbcopy
+    -exec sh -c 'echo "=== $1 ==="; cat "$1" | sed -E -e "s|//.*$||g" -e ":a; s|/\*.*?\*/||g; ta"; echo' _ {} \; | pbcopy
 
 echo "Done! TypeScript code has been copied to clipboard."

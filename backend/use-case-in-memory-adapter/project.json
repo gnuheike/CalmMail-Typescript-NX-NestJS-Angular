@@ -1,5 +1,5 @@
 {
-  "name": "use-case-in-memory-adapter",
+  "name": "backend/use-case-in-memory-adapter",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "backend/use-case-in-memory-adapter",
   "projectType": "library",
@@ -37,7 +37,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "use-case-in-memory-adapter/domain/jest.config.ts"
+        "jestConfig": "backend/use-case-in-memory-adapter/jest.config.ts"
       }
     }
   }
