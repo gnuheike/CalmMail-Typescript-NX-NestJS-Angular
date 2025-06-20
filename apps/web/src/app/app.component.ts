@@ -1,8 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
-import { IconsLoaderService } from '@calm-mail/frontend-presentation';
-import { PlatformDetectionService } from '@calm-mail/frontend-application';
+import { PlatformDetectionService } from '@calm-mail/frontend/adapter';
+import { IconsLoaderService } from '@calm-mail/frontend/shared';
 
 @Component({
     imports: [RouterModule, IonApp, IonRouterOutlet],

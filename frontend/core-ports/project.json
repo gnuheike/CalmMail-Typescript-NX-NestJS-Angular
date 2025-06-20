@@ -1,0 +1,38 @@
+{
+  "name": "frontend/core-ports",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "frontend/frontend/core-ports",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/frontend/frontend/core-ports",
+        "main": "frontend/frontend/core-ports/index.ts",
+        "tsConfig": "frontend/frontend/core-ports/tsconfig.lib.json",
+        "assets": [
+          "frontend/frontend/core-ports/*.md"
+        ],
+        "format": [
+          "cjs"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "frontend/frontend/core-ports/jest.config.ts"
+      }
+    }
+  }
+}

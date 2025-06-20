@@ -34,17 +34,20 @@
       "@calm-mail/contract": [
         "shared/contract/index.ts"
       ],
-      "@calm-mail/frontend-application": [
-        "frontend/application/index.ts"
+      "@calm-mail/frontend/adapter": [
+        "frontend/adapter/index.ts"
       ],
-      "@calm-mail/frontend-component": [
-        "frontend/component/index.ts"
+      "@calm-mail/frontend/core-ports": [
+        "frontend/core-ports/index.ts"
       ],
-      "@calm-mail/frontend-infrastructure": [
-        "frontend/infrastructure/index.ts"
+      "@calm-mail/frontend/feature": [
+        "frontend/feature/index.ts"
       ],
-      "@calm-mail/frontend-presentation": [
-        "frontend/presentation/index.ts"
+      "@calm-mail/frontend/permanent-storage": [
+        "lib/permanent-storage/index.ts"
+      ],
+      "@calm-mail/frontend/shared": [
+        "frontend/shared/index.ts"
       ],
       "@calm-mail/shared-domain": [
         "shared/domain/index.ts"

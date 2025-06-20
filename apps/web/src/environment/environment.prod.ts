@@ -1,7 +1,8 @@
-import { inMemoryEmailGatewayProviders, inMemoryFolderGatewayProviders } from '@calm-mail/frontend-infrastructure';
 import { Environment } from './environment.interface';
+import { consoleLoggerProvider, inMemoryAuthGatewayProvider, inMemoryEmailGatewayProvider, inMemoryFolderGatewayProvider } from '@calm-mail/frontend/adapter';
 
 export const environment: Environment = {
     production: true,
-    gatewayProviders: [...inMemoryFolderGatewayProviders(), ...inMemoryEmailGatewayProviders()],
+    gatewayProviders: [...inMemoryFolderGatewayProvider(), ...inMemoryEmailGatewayProvider(), ...inMemoryAuthGatewayProvider()],
+    loggerProviders: [...consoleLoggerProvider()],
 };

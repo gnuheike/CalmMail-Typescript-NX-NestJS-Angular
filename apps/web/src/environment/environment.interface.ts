@@ -11,4 +11,5 @@ import { Provider } from '@angular/core';
 export interface Environment {
     production: boolean;
     gatewayProviders: Provider[];
+    loggerProviders: Provider[];
 }
