@@ -1,0 +1,12 @@
+{
+  "name": "@calm-mail/frontend-adapter",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./index.cjs",
+  "types": "./index.d.ts",
+  "peerDependencies": {
+    "@calm-mail/frontend-core-ports": "*",
+    "@calm-mail/contract": "*"
+  }
+}

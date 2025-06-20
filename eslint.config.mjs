@@ -1,12 +1,10 @@
-import nx from '@nx/eslint-plugin';
+import baseConfig from './eslint.base.config.mjs';
 import angular from '@angular-eslint/eslint-plugin';
 import angularTemplate from '@angular-eslint/eslint-plugin-template';
 import unicorn from 'eslint-plugin-unicorn';
 
 export default [
-    ...nx.configs['flat/base'],
-    ...nx.configs['flat/typescript'],
-    ...nx.configs['flat/javascript'],
+    ...baseConfig,
     {
         ignores: ['**/dist'],
     },

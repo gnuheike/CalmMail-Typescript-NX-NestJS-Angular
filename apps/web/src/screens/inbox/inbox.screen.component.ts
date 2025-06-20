@@ -1,7 +1,7 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { EmailListComponent, FolderListComponent, inboxFacadeProvider, InboxStateFacade } from '@calm-mail/frontend/feature';
+import { EmailListComponent, FolderListComponent, inboxFacadeProvider, InboxStateFacade } from '@calm-mail/frontend-feature';
 
 @Component({
     selector: 'app-inbox',

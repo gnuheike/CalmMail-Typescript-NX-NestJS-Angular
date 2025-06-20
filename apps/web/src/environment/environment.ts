@@ -4,7 +4,7 @@ import {
     inMemoryAuthGatewayProvider,
     inMemoryEmailGatewayProvider,
     inMemoryFolderGatewayProvider
-} from '@calm-mail/frontend/adapter';
+} from '@calm-mail/frontend-adapter';
 
 /**
  * Represents the application environment configuration.

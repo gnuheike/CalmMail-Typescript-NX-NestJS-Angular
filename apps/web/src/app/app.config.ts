@@ -5,7 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { provideIonicAngular } from '@ionic/angular/standalone';
 import { environment } from '../environment/environment';
-import { provideAuth } from '@calm-mail/frontend/feature';
+import { provideAuth } from '@calm-mail/frontend-feature';
 
 export const appConfig: ApplicationConfig = {
     providers: [

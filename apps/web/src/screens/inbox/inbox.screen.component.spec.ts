@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InboxScreenComponent } from './inbox.screen.component';
 import { By } from '@angular/platform-browser';
-import { FolderGateway, EmailGateway } from '@calm-mail/frontend-application';
 import { of } from 'rxjs';
+import { EmailGateway, FolderGateway } from '@calm-mail/frontend-core-ports';
 
 describe('InboxComponent', () => {
     let component: InboxScreenComponent;
@@ -20,7 +20,7 @@ describe('InboxComponent', () => {
                 unreadCount: 5,
                 totalCount: 10,
                 isDefault: true,
-                icon: 'mail-outline'
+                icon: 'mail-outline',
             },
             {
                 id: 'folder-2',
@@ -29,8 +29,8 @@ describe('InboxComponent', () => {
                 unreadCount: 0,
                 totalCount: 20,
                 isDefault: true,
-                icon: 'paper-plane-outline'
-            }
+                icon: 'paper-plane-outline',
+            },
         ];
 
         // Mock email data
@@ -46,27 +46,29 @@ describe('InboxComponent', () => {
                 processedAt: new Date(),
                 read: false,
                 isDraft: false,
-                folderId: 'folder-1'
-            }
+                folderId: 'folder-1',
+            },
         ];
 
         mockFolderGateway = {
-            getFolders: jest.fn().mockReturnValue(of({ folders: mockFolders }))
+            getFolders: jest.fn().mockReturnValue(of({ folders: mockFolders })),
         } as unknown as jest.Mocked<FolderGateway>;
 
         mockEmailGateway = {
-            getEmails: jest.fn().mockReturnValue(of({ 
-                emails: mockEmails, 
-                pagination: { page: 1, limit: 10, totalItems: 1, totalPages: 1 } 
-            }))
+            getEmails: jest.fn().mockReturnValue(
+                of({
+                    emails: mockEmails,
+                    pagination: { page: 1, limit: 10, totalItems: 1, totalPages: 1 },
+                }),
+            ),
         } as unknown as jest.Mocked<EmailGateway>;
 
         await TestBed.configureTestingModule({
             imports: [InboxScreenComponent],
             providers: [
                 { provide: FolderGateway, useValue: mockFolderGateway },
-                { provide: EmailGateway, useValue: mockEmailGateway }
-            ]
+                { provide: EmailGateway, useValue: mockEmailGateway },
+            ],
         }).compileComponents();
 
         fixture = TestBed.createComponent(InboxScreenComponent);

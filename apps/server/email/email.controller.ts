@@ -1,7 +1,7 @@
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { Controller } from '@nestjs/common';
-import { emailContract } from 'shared/contract';
-import { CreateEmailUseCase, GetEmailsUseCase } from 'backend/domain';
+import { CreateEmailUseCase, GetEmailsUseCase } from '@calm-mail/backend-domain';
+import { emailContract } from '@calm-mail/contract';
 
 @Controller()
 export class EmailController {

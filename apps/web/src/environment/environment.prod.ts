@@ -1,5 +1,5 @@
 import { Environment } from './environment.interface';
-import { consoleLoggerProvider, inMemoryAuthGatewayProvider, inMemoryEmailGatewayProvider, inMemoryFolderGatewayProvider } from '@calm-mail/frontend/adapter';
+import { consoleLoggerProvider, inMemoryAuthGatewayProvider, inMemoryEmailGatewayProvider, inMemoryFolderGatewayProvider } from '@calm-mail/frontend-adapter';
 
 export const environment: Environment = {
     production: true,
