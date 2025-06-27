@@ -6,7 +6,7 @@
  *
  * It only used in the mock providers. No tin production
  */
-import { from, Observable, throwError, timer } from 'rxjs';
+import { firstValueFrom, from, Observable, throwError, timer } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 /**
@@ -79,4 +79,8 @@ export function simulateNetworkRequestObservable<T>(callback: () => T | Promise<
             }
         }),
     );
+}
+
+export function simulateNetworkRequestPromise<T>(callback: () => T | Promise<T>): Promise<T> {
+    return firstValueFrom(simulateNetworkRequestObservable(callback));
 }

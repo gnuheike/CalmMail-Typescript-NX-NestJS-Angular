@@ -1,0 +1,14 @@
+@let selectedEmail = selectedEmail$();
+
+@if (selectedEmail) {
+    <app-inbox-email-view [email$]="selectedEmail"
+                          (emailSelectionClearEmitterRef)="selectedEmail$.set(undefined)"></app-inbox-email-view>
+} @else {
+    <app-inbox-emails-list
+            [emails$]="emails$()"
+            [emailsError$]="emailsError$()"
+            [emailsLoading$]="emailsLoading$()"
+            [selectedFolder$]="selectedFolder$()"
+            (emailSelectedEmitterRef)="selectedEmail$.set($event)"
+    ></app-inbox-emails-list>
+}

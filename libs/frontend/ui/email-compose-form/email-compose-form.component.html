@@ -1,0 +1,87 @@
+<!-- libs/frontend/ui/email-compose-form/email-compose-form.component.html -->
+<form (ngSubmit)="onSubmit()" [formGroup]="emailForm">
+    <ion-item lines="full">
+        <ion-label [class.ion-text-danger]="toCtrl?.invalid && (toCtrl?.dirty || toCtrl?.touched)" position="stacked">
+            To <span *ngIf="toCtrl?.errors?.['required']" class="ion-text-danger">*</span>
+        </ion-label>
+        <ion-input
+                [class.ion-invalid]="toCtrl?.invalid && (toCtrl?.dirty || toCtrl?.touched)"
+                [class.ion-valid]="toCtrl?.valid && (toCtrl?.dirty || toCtrl?.touched)"
+                errorText="{{ toCtrl?.errors?.['invalidEmailList'] ? toCtrl?.errors?.['invalidEmailList'].message : (toCtrl?.errors?.['required'] ? 'To field is required' : null) }}"
+                formControlName="to"
+                placeholder="recipient@example.com, another@example.com"
+                type="email"
+        ></ion-input>
+        <!-- Alternative inline error display: -->
+        <!--
+        <div *ngIf="toCtrl?.invalid && (toCtrl?.dirty || toCtrl?.touched)" class="validation-errors">
+          <small *ngIf="toCtrl?.errors?.['required']" class="ion-text-danger">To field is required.</small>
+          <small *ngIf="toCtrl?.errors?.['invalidEmailList']" class="ion-text-danger">
+            {{ toCtrl?.errors?.['invalidEmailList'].message || 'One or more "To" emails are invalid.' }}
+          </small>
+        </div>
+        -->
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-label [class.ion-text-danger]="ccCtrl?.invalid && (ccCtrl?.dirty || ccCtrl?.touched)" position="stacked">
+            Cc
+        </ion-label>
+        <ion-input
+                [class.ion-invalid]="ccCtrl?.invalid && (ccCtrl?.dirty || ccCtrl?.touched)"
+                [class.ion-valid]="ccCtrl?.valid && (ccCtrl?.dirty || ccCtrl?.touched)"
+                errorText="{{ ccCtrl?.errors?.['invalidEmailList'] ? ccCtrl?.errors?.['invalidEmailList'].message : null }}"
+                formControlName="cc"
+                placeholder="cc@example.com"
+                type="email"
+        ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-label [class.ion-text-danger]="bccCtrl?.invalid && (bccCtrl?.dirty || bccCtrl?.touched)"
+                   position="stacked">Bcc
+        </ion-label>
+        <ion-input
+                [class.ion-invalid]="bccCtrl?.invalid && (bccCtrl?.dirty || bccCtrl?.touched)"
+                [class.ion-valid]="bccCtrl?.valid && (bccCtrl?.dirty || bccCtrl?.touched)"
+                errorText="{{ bccCtrl?.errors?.['invalidEmailList'] ? bccCtrl?.errors?.['invalidEmailList'].message : null }}"
+                formControlName="bcc"
+                placeholder="bcc@example.com"
+                type="email"
+        ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-label [class.ion-text-danger]="subjectCtrl?.invalid && (subjectCtrl?.dirty || subjectCtrl?.touched)"
+                   position="stacked">
+            Subject <span *ngIf="subjectCtrl?.errors?.['required']" class="ion-text-danger">*</span>
+        </ion-label>
+        <ion-input
+                [class.ion-invalid]="subjectCtrl?.invalid && (subjectCtrl?.dirty || subjectCtrl?.touched)"
+                [class.ion-valid]="subjectCtrl?.valid && (subjectCtrl?.dirty || subjectCtrl?.touched)"
+                errorText="{{ subjectCtrl?.errors?.['required'] ? 'Subject is required' : (subjectCtrl?.errors?.['maxlength'] ? 'Subject is too long' : null) }}"
+                formControlName="subject"
+                placeholder="Email subject"
+                type="text"
+        ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+        <ion-label [class.ion-text-danger]="bodyCtrl?.invalid && (bodyCtrl?.dirty || bodyCtrl?.touched)"
+                   position="stacked">
+            Message <span *ngIf="bodyCtrl?.errors?.['required']" class="ion-text-danger">*</span>
+        </ion-label>
+        <ion-textarea
+                [class.ion-invalid]="bodyCtrl?.invalid && (bodyCtrl?.dirty || bodyCtrl?.touched)"
+                [class.ion-valid]="bodyCtrl?.valid && (bodyCtrl?.dirty || bodyCtrl?.touched)"
+                errorText="{{ bodyCtrl?.errors?.['required'] ? 'Message body is required' : (bodyCtrl?.errors?.['maxlength'] ? 'Message is too long' : null) }}"
+                formControlName="body"
+                placeholder="Type your message here..."
+                rows="10"
+        ></ion-textarea>
+    </ion-item>
+
+    <ion-button [disabled]="isSubmitting()" expand="block" type="submit">
+        {{ submitButtonText() }}
+    </ion-button>
+</form>

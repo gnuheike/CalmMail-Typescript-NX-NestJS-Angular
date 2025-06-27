@@ -1,0 +1,24 @@
+@if (emailsLoading$()) {
+    <ion-progress-bar type="indeterminate"></ion-progress-bar>
+}
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        @let selectedFolder = selectedFolder$();
+        @if (selectedFolder) {
+            <ion-title>CalmMail - {{ selectedFolder.displayName }}</ion-title>
+        }
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    @if (emailsError$()) {
+        <div class="error-message">{{ emailsError$() }}</div>
+    }
+    <lib-email-list
+            (emailSelectedEmitterRef)="emailSelectedEmitterRef.emit($event)"
+            [emails]="emails$()"
+    ></lib-email-list>
+</ion-content>

@@ -1,4 +1,18 @@
-import { airplane, archive, briefcase, cash, documentTextOutline, folderOutline, mailOutline, paperPlaneOutline, people, trashOutline } from 'ionicons/icons';
+import {
+    airplane,
+    archive,
+    arrowBack,
+    briefcase,
+    cash,
+    documentTextOutline,
+    folderOutline,
+    mail,
+    mailOutline,
+    paperPlaneOutline,
+    people,
+    send,
+    trashOutline,
+} from 'ionicons/icons';
 
 export const APP_ICONS = {
     mailOutline,
@@ -11,4 +25,7 @@ export const APP_ICONS = {
     cash,
     airplane,
     archive,
+    mail,
+    send,
+    arrowBack,
 };

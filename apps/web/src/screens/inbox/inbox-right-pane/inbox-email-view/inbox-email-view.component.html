@@ -1,0 +1,36 @@
+@let selectedEmail = email$();
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="emailSelectionClearEmitterRef.emit()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-title>{{ selectedEmail.subject }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <div class="email-container">
+        <div class="email-header">
+            <div class="email-metadata">
+                <div class="email-from">
+                    <strong>From:</strong> {{ selectedEmail.from }}
+                </div>
+                <div class="email-date">
+                    <ion-text color="medium">
+                        {{ selectedEmail.processedAt | date:'medium' }}
+                    </ion-text>
+                </div>
+            </div>
+            <div class="email-subject">
+                <h2>{{ selectedEmail.subject }}</h2>
+            </div>
+        </div>
+
+        <div class="email-body">
+            <p>{{ selectedEmail.body }}</p>
+        </div>
+    </div>
+</ion-content>

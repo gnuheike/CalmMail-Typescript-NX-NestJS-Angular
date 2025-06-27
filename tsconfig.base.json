@@ -37,14 +37,17 @@
       "@calm-mail/frontend-adapter": [
         "libs/frontend/adapter/index.ts"
       ],
-      "@calm-mail/frontend-core-ports": [
-        "libs/frontend/core-ports/index.ts"
+      "@calm-mail/frontend-domain": [
+        "libs/frontend/domain/index.ts"
       ],
-      "@calm-mail/frontend-feature": [
-        "libs/frontend/feature/index.ts"
+      "@calm-mail/frontend-application": [
+        "libs/frontend/application/index.ts"
       ],
       "@calm-mail/frontend-shared": [
         "libs/frontend/shared/index.ts"
+      ],
+      "@calm-mail/frontend-ui": [
+        "libs/frontend/ui/index.ts"
       ],
       "@calm-mail/permanent-storage": [
         "libs/permanent-storage/index.ts"

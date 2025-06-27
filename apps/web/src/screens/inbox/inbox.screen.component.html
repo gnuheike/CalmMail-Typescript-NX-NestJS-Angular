@@ -1,45 +1,19 @@
 <ion-split-pane contentId="main-content" when="md">
     <ion-menu contentId="main-content" type="overlay">
-        <!-- Mobile folder sidebar placeholder -->
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>Folders</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content>
-            @if (foldersLoading$()) {
-                <ion-progress-bar type="indeterminate"></ion-progress-bar>
-            }
-            @if (foldersError$()) {
-                <div class="error-message">{{ foldersError$() }}</div>
-            }
-            <lib-folder-list (folderSelectedEmitterRef)="selectFolder($event)"
-                             [folders]="folders$()"></lib-folder-list>
-        </ion-content>
+        <app-inbox-left-pane
+                (folderSelectedEmitterRef)="inboxFacade.selectFolder( $event)"
+                [folders$]="inboxFacade.folders$() || []"
+                [foldersError$]="inboxFacade.foldersError$()?.message || null"
+                [foldersLoading$]="inboxFacade.foldersLoading$()"
+        ></app-inbox-left-pane>
     </ion-menu>
 
-    <div class="ion-page" id="main-content">
-        @if (emailsLoading$()) {
-            <ion-progress-bar type="indeterminate"></ion-progress-bar>
-        }
-        <ion-header>
-            <ion-toolbar>
-                <ion-buttons slot="start">
-                    <ion-menu-button></ion-menu-button>
-                </ion-buttons>
-                @let selectedFolder = selectedFolder$();
-                @if (selectedFolder) {
-                    <ion-title>CalmMail - {{ selectedFolder.displayName }}</ion-title>
-                }
-            </ion-toolbar>
-        </ion-header>
-
-        <ion-content>
-            @if (emailsError$()) {
-                <div class="error-message">{{ emailsError$() }}</div>
-            }
-            <lib-email-list [emails]="emails$()"></lib-email-list>
-        </ion-content>
-    </div>
+    <app-inbox-right-pane
+            [emails$]="inboxFacade.emails$() || []" [emailsError$]="inboxFacade.emailsError$()?.message || null"
+            [emailsLoading$]="inboxFacade.emailsLoading$()"
+            [selectedFolder$]="inboxFacade.selectedFolder$()"
+            class="ion-page"
+            id="main-content"
+    ></app-inbox-right-pane>
 </ion-split-pane>
 

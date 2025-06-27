@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <ion-icon color="primary" name="mail" size="large"></ion-icon>
+            <ion-text class="title">
+                CalmMail
+            </ion-text>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-button (click)="onNewMessageClick()" [expand]="'block'">New Message</ion-button>
+    @if (foldersLoading$()) {
+        <ion-progress-bar type="indeterminate"></ion-progress-bar>
+    }
+    @if (foldersError$()) {
+        <div class="error-message">{{ foldersError$() }}</div>
+    }
+    <lib-folder-list
+            (folderSelectedEmitterRef)="folderSelectedEmitterRef.emit($event)"
+            [folders]="folders$()"
+    ></lib-folder-list>
+</ion-content>

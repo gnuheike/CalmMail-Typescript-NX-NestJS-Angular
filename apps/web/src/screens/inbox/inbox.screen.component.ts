@@ -1,46 +1,22 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { EmailListComponent, FolderListComponent, inboxFacadeProvider, InboxStateFacade } from '@calm-mail/frontend-feature';
+import { InboxLeftPaneComponent } from './inbox-left-pane/inbox-left-pane.component';
+import { InboxRightPaneComponent } from './inbox-right-pane/inbox-right-pane.component';
+import { InboxFacade } from '@calm-mail/frontend-application';
 
 @Component({
     selector: 'app-inbox',
-    imports: [CommonModule, IonicModule, FolderListComponent, EmailListComponent],
+    imports: [CommonModule, IonicModule, InboxLeftPaneComponent, InboxRightPaneComponent],
     templateUrl: './inbox.screen.component.html',
     styleUrl: './inbox.screen.component.scss',
-    providers: [inboxFacadeProvider()],
+    providers: [],
 })
 export class InboxScreenComponent {
-    private readonly inboxState = inject(InboxStateFacade);
-
-    // Data signals with fallback to empty arrays
-    protected readonly folders$ = computed(() => this.inboxState.folders$() || []);
-    protected readonly emails$ = computed(() => this.inboxState.emails$() || []);
-    protected readonly selectedFolder$ = this.inboxState.selectedFolder$;
-
-    // Loading and error state signals
-    protected readonly foldersLoading$ = this.inboxState.foldersLoading$;
-    protected readonly foldersError$ = this.inboxState.foldersError$;
-    protected readonly emailsLoading$ = this.inboxState.emailsLoading$;
-    protected readonly emailsError$ = this.inboxState.emailsError$;
-
-    // Global loading indicator
-    protected readonly anyLoading$ = this.inboxState.anyLoading$;
-
-    //
-    protected readonly selectFolder = this.inboxState.selectFolder.bind(this.inboxState);
+    protected readonly inboxFacade = inject(InboxFacade);
 
     constructor() {
-        // Explicitly orchestrate the initial data load flow
-        effect(() => {
-            const folders = this.inboxState.folders$();
-            // Check if folders have loaded and emails haven't been requested yet
-            if (folders && folders.length > 0 && !this.inboxState.emails$() && !this.inboxState.emailsLoading$()) {
-                const inbox = folders.find((f) => f.name === 'inbox');
-                if (inbox) {
-                    this.inboxState.selectFolder(inbox);
-                }
-            }
-        });
+        // Initialize the inbox view, which will select the default folder
+        this.inboxFacade.initializeView();
     }
 }

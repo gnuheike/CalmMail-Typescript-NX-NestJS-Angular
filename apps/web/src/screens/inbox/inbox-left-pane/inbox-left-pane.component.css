@@ -1,0 +1,8 @@
+:host {
+    height: 100%;
+}
+
+.title {
+    vertical-align: super;
+    font-size: 1.5rem;
+}

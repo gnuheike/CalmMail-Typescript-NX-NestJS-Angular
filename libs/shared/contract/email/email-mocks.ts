@@ -1,129 +1,131 @@
-import { CreateEmailResponse, Email, GetEmailsResponse } from './email.type';
-import { createDefaultFolders } from '../folder/folder-mocks';
+import { Email } from './email.type';
+import { draftsFolder, familyFolder, inboxFolder, sentFolder, workFolder } from '../folder';
 
-/**
- * Mock Email Data
- *
- * This file provides mock data for testing email-related functionality.
- * These mocks can be used across tests to ensure consistent test data.
- */
-
-/**
- * Creates a mock email with the given properties
- */
-export function createMockEmail(overrides: Partial<Email> = {}): Email {
-    // Get default folders to reference a valid folder ID
-    const defaultFolders = createDefaultFolders();
-    const inboxFolder = defaultFolders[0];
-
-    if (!inboxFolder) throw new Error('No default inbox folder found.');
-
-    return {
-        id: 'clq1234567890abcdefghijklm',
-        subject: 'Test Email Subject',
-        from: 'sender@example.com',
-        to: ['recipient@example.com'],
+export const mockEmails: Email[] = [
+    // Inbox emails
+    {
+        id: 'clq1234567890email00000001',
+        subject: 'Welcome to CalmMail',
+        from: 'support@calmmail.com',
+        to: ['user@example.com'],
+        processedAt: new Date('2023-06-01T10:00:00Z'),
+        body: 'Thank you for choosing CalmMail. We hope you enjoy our calm and focused email experience.',
+        isDraft: false,
         cc: [],
         bcc: [],
-        body: 'This is a test email body.',
-        processedAt: new Date(),
         read: false,
-        isDraft: false,
-        folderId: inboxFolder.id, // Reference a valid folder ID
-        ...overrides,
-    };
-}
-
-/**
- * Creates a mock email in the inbox folder
- */
-export function createMockInboxEmail(overrides: Partial<Email> = {}): Email {
-    const defaultFolders = createDefaultFolders();
-    const inboxFolder = defaultFolders[0]; // First folder is inbox
-
-    if (!inboxFolder) throw new Error('No default inbox folder found.');
-
-    return createMockEmail({
         folderId: inboxFolder.id,
-        ...overrides,
-    });
-}
-
-/**
- * Creates a mock email in the sent folder
- */
-export function createMockSentEmail(overrides: Partial<Email> = {}): Email {
-    const defaultFolders = createDefaultFolders();
-    const sentFolder = defaultFolders[1]; // Second folder is sent
-
-    if (!sentFolder) throw new Error('No default sent folder found.');
-
-    return createMockEmail({
-        from: 'user@example.com',
-        folderId: sentFolder.id,
+    },
+    {
+        id: 'clq1234567890email00000002',
+        subject: 'Meeting Tomorrow',
+        from: 'manager@company.com',
+        to: ['user@example.com'],
+        cc: ['team@company.com'],
+        bcc: [],
+        processedAt: new Date('2023-06-02T10:00:00Z'),
+        body: "Let's meet tomorrow at 10 AM to discuss the project progress.",
+        isDraft: false,
         read: true,
-        ...overrides,
-    });
-}
+        folderId: inboxFolder.id,
+    },
+    {
+        id: 'clq1234567890email00000003',
+        subject: 'Vacation Plans',
+        from: 'friend@personal.com',
+        to: ['user@example.com'],
+        cc: [],
+        bcc: [],
+        processedAt: new Date('2023-06-03T10:00:00Z'),
+        body: 'Hey, I was thinking about our vacation plans. How about we go to the beach next month?',
+        isDraft: false,
+        read: false,
+        folderId: inboxFolder.id,
+    },
 
-/**
- * Creates a mock draft email
- */
-export function createMockDraftEmail(overrides: Partial<Email> = {}): Email {
-    const defaultFolders = createDefaultFolders();
-    const draftsFolder = defaultFolders[2]; // Third folder is drafts
-
-    if (!draftsFolder) throw new Error('No default drafts folder found.');
-
-    return createMockEmail({
+    // Sent emails
+    {
+        id: 'clq1234567890email00000004',
+        subject: 'Re: Project Update',
         from: 'user@example.com',
-        folderId: draftsFolder.id,
+        to: ['colleague@company.com'],
+        cc: [],
+        bcc: [],
+        processedAt: new Date('2023-06-04T10:00:00Z'),
+        body: "I've completed the tasks you assigned. Please review and let me know if any changes are needed.",
+        isDraft: false,
+        read: true,
+        folderId: sentFolder.id,
+    },
+    {
+        id: 'clq1234567890email00000005',
+        subject: 'Dinner Invitation',
+        from: 'user@example.com',
+        to: ['friend1@personal.com', 'friend2@personal.com'],
+        cc: [],
+        bcc: [],
+        processedAt: new Date('2023-06-05T10:00:00Z'),
+        body: 'Would you like to join us for dinner this Saturday at 7 PM?',
+        isDraft: false,
+        read: true,
+        folderId: sentFolder.id,
+    },
+
+    // Draft emails
+    {
+        id: 'clq1234567890email00000006',
+        subject: 'Project Proposal',
+        from: 'user@example.com',
+        to: ['client@company.com'],
+        cc: [],
+        bcc: [],
+        processedAt: new Date('2023-06-06T10:00:00Z'),
+        body: 'Here is the project proposal we discussed. [DRAFT - NOT COMPLETE]',
         isDraft: true,
-        ...overrides,
-    });
-}
+        read: true,
+        folderId: draftsFolder.id,
+    },
 
-/**
- * Creates a mock GetEmailsResponse
- */
-export function createMockGetEmailsResponse(overrides: Partial<GetEmailsResponse> = {}): GetEmailsResponse {
-    return {
-        emails: [
-            createMockInboxEmail(),
-            createMockInboxEmail({
-                id: 'clq2345678901abcdefghijklm',
-                subject: 'Another Test Email',
-            }),
-        ],
-        pagination: {
-            page: 1,
-            limit: 20,
-            totalItems: 2,
-            totalPages: 1,
-        },
-        ...overrides,
-    };
-}
+    // Work folder emails
+    {
+        id: 'clq1234567890email00000007',
+        subject: 'Quarterly Report',
+        from: 'finance@company.com',
+        to: ['user@example.com'],
+        cc: ['team@company.com'],
+        bcc: [],
+        processedAt: new Date('2023-06-07T10:00:00Z'),
+        body: 'Please find attached the quarterly financial report.',
+        isDraft: false,
+        read: false,
+        folderId: workFolder.id,
+    },
+    {
+        id: 'clq1234567890email00000008',
+        subject: 'New Project Opportunity',
+        from: 'sales@company.com',
+        to: ['user@example.com'],
+        cc: [],
+        bcc: [],
+        processedAt: new Date('2023-06-08T10:00:00Z'),
+        body: "We have a new project opportunity with a potential client. Let's discuss it in our next meeting.",
+        isDraft: false,
+        read: true,
+        folderId: workFolder.id,
+    },
 
-/**
- * Creates a mock CreateEmailResponse
- */
-export function createMockCreateEmailResponse(overrides: Partial<CreateEmailResponse> = {}): CreateEmailResponse {
-    return {
-        email: createMockEmail(),
-        ...overrides,
-    };
-}
-
-/**
- * Creates a set of mock emails for a specific folder
- */
-export function createMockEmailsForFolder(folderId: string, count = 3): Email[] {
-    return Array.from({ length: count }, (_, index) =>
-        createMockEmail({
-            id: `clq${Date.now().toString(36)}${Math.random().toString(36).substring(2, 7)}${index}`,
-            subject: `Email ${index + 1} in folder`,
-            folderId,
-        }),
-    );
-}
+    // Family folder emails
+    {
+        id: 'clq1234567890email00000009',
+        subject: 'Family Reunion',
+        from: 'relative@family.com',
+        to: ['user@example.com'],
+        cc: ['family@group.com'],
+        bcc: [],
+        processedAt: new Date('2023-06-09T10:00:00Z'),
+        body: "We're planning a family reunion next month. Please let me know if you can attend.",
+        isDraft: false,
+        read: false,
+        folderId: familyFolder.id,
+    },
+];

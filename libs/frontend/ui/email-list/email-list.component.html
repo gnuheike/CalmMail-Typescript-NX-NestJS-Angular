@@ -1,0 +1,21 @@
+<ion-list>
+    @if (emails().length === 0) {
+        <ion-item>
+            <ion-label class="no-emails">No emails to display</ion-label>
+        </ion-item>
+    }
+    @for (email of emails(); track email.id) {
+        <ion-item [class.unread]="!email.read" class="email-item" (click)="emailSelectedEmitterRef.emit(email)">
+            <div class="email-container">
+                <div class="email-header">
+                    <div class="email-sender">{{ email.from }}</div>
+                    <div class="email-date">{{ email.processedAt | formatEmailDate }}</div>
+                </div>
+                <div class="email-subject">{{ email.subject }}</div>
+                <div class="email-preview">
+                    {{ email.preview }}
+                </div>
+            </div>
+        </ion-item>
+    }
+</ion-list>

@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="onCancel()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Compose Email</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="saveDraft()" [disabled]="isSendingEmail() || !currentDraft()">
+                Save Draft
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <lib-email-compose-form
+            (formSubmit)="handleFormSubmission($event)"
+            (formValueChange)="logDraft($event)"
+            [initialData]="draftEmail()"
+            [isSubmitting]="isSendingEmail()"
+            [submitButtonText]="'Send Email'"
+    />
+</ion-content>

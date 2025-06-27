@@ -2,12 +2,11 @@
 
 ![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/gnuheike/5e5f0185a79b23d8609188502a8ce8af/raw/coverage-badge.json)
 
-
 ![Calm Mail](https://gnuheike.top/clouds.jpg)
 
-
-
-CalmMail is a lightweight, cross-platform email client application that provides essential email functionality across desktop and mobile devices. The application focuses on simplicity, reliability, and seamless synchronization while maintaining a consistent user experience across all platforms.
+CalmMail is a lightweight, cross-platform email client application that provides essential email functionality across
+desktop and mobile devices. The application focuses on simplicity, reliability, and seamless synchronization while
+maintaining a consistent user experience across all platforms.
 
 ## Features
 
@@ -16,7 +15,7 @@ CalmMail is a lightweight, cross-platform email client application that provides
 - **Inbox Management**: View, read, and organize incoming emails
 - **Email Composition**: Create, edit, and send emails with basic formatting
 - **Draft System**: Save work-in-progress emails for later completion
-- **Email Organization**: Move emails between inbox, sent, and trash folders
+- **Email Organization**: Move emails between inbox, sent, and trash foldersResponse
 - **Read Status**: Mark emails as read/unread for better tracking
 
 ### Account Management

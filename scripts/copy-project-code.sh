@@ -33,11 +33,12 @@ echo "This may take a moment depending on the size of the codebase..."
 find "$SEARCH_PATH" -name "*.ts" \
     -not -path "*/node_modules/*" \
     -not -name "*.spec.ts" \
+    -not -name "index.ts" \
     -not -name "config.ts" \
     -not -path "*/.nx/*" \
     -not -path "*/dist/*" \
     -not -name "index.ts" \
     -not -name "jest.config.ts" \
-    -exec sh -c 'echo "=== $1 ==="; cat "$1" | sed -E -e "s|//.*$||g" -e ":a; s|/\*.*?\*/||g; ta"; echo' _ {} \; | pbcopy
+    -exec sh -c 'echo "=== $1 ==="; node scripts/strip_ts_comments.js "$1"; echo' _ {} \; | pbcopy
 
 echo "Done! TypeScript code has been copied to clipboard."

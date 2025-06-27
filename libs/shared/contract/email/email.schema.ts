@@ -5,7 +5,7 @@ import { createPaginatedResponseSchema, PaginationRequestQuerySchema } from '../
  * Zod schema for a valid email address string.
  * Ensures email strings conform to a standard email format.
  */
-const emailString = z.string().email({ message: 'Invalid email address format.' });
+export const emailString = z.string().email({ message: 'Invalid email address format.' });
 
 /**
  * Email Schema
@@ -28,18 +28,18 @@ const emailString = z.string().email({ message: 'Invalid email address format.' 
  * - threadId: Optional conversation thread identifier
  */
 export const EmailSchema = z.object({
-  id: z.string().cuid2(),
-  subject: z.string().min(1, 'Subject is required.').max(255, 'Subject cannot exceed 255 characters.'),
-  from: emailString,
-  to: z.array(emailString).min(1, 'At least one recipient in "To" is required.'),
-  cc: z.array(emailString).optional().default([]),
-  bcc: z.array(emailString).optional().default([]),
-  body: z.string().max(1024 * 1024, 'Body cannot exceed 1MB.'),
-  processedAt: z.coerce.date(),
-  read: z.boolean().default(false),
-  isDraft: z.boolean().default(false),
-  folderId: z.string().cuid2({ message: 'Folder ID must be a valid CUID2.' }),
-  threadId: z.string().cuid2().optional(),
+    id: z.string().cuid2(),
+    subject: z.string().min(1, 'Subject is required.').max(255, 'Subject cannot exceed 255 characters.'),
+    from: emailString,
+    to: z.array(emailString).min(1, 'At least one recipient in "To" is required.'),
+    cc: z.array(emailString).optional().default([]),
+    bcc: z.array(emailString).optional().default([]),
+    body: z.string().max(1024 * 1024, 'Body cannot exceed 1MB.'),
+    processedAt: z.coerce.date(),
+    read: z.boolean().default(false),
+    isDraft: z.boolean().default(false),
+    folderId: z.string().cuid2({ message: 'Folder ID must be a valid CUID2.' }),
+    threadId: z.string().cuid2().optional(),
 });
 
 /**
@@ -53,7 +53,7 @@ export const EmailSchema = z.object({
  * - folderId: Optional filter for emails in a specific folder
  */
 export const GetEmailsRequestQuerySchema = PaginationRequestQuerySchema.extend({
-  folderId: z.string().cuid2({ message: 'Folder ID filter must be a valid CUID2.' }).optional(),
+    folderId: z.string().cuid2({ message: 'Folder ID filter must be a valid CUID2.' }).optional(),
 });
 
 /**
@@ -83,15 +83,15 @@ export const GetEmailsResponseSchema = createPaginatedResponseSchema(EmailSchema
  * - threadId: Conversation thread this email belongs to (optional)
  */
 export const CreateEmailRequestBodySchema = z.object({
-  from: emailString,
-  to: z.array(emailString).min(1, { message: "At least one recipient in 'To' is required." }),
-  cc: z.array(emailString).optional().default([]),
-  bcc: z.array(emailString).optional().default([]),
-  subject: z.string().min(1, { message: 'Subject is required.' }).max(255),
-  body: z.string().max(1024 * 1024, 'Body cannot exceed 1MB.'),
-  folderId: z.string().cuid2({ message: 'Target Folder ID must be a valid CUID2.' }).optional(),
-  saveAsDraft: z.boolean().optional(),
-  threadId: z.string().cuid2().optional(),
+    from: emailString,
+    to: z.array(emailString).min(1, { message: "At least one recipient in 'To' is required." }),
+    cc: z.array(emailString).optional().default([]),
+    bcc: z.array(emailString).optional().default([]),
+    subject: z.string().min(1, { message: 'Subject is required.' }).max(255),
+    body: z.string().max(1024 * 1024, 'Body cannot exceed 1MB.'),
+    folderId: z.string().cuid2({ message: 'Target Folder ID must be a valid CUID2.' }).optional(),
+    saveAsDraft: z.boolean().optional(),
+    threadId: z.string().cuid2().optional(),
 });
 
 /**
@@ -104,5 +104,5 @@ export const CreateEmailRequestBodySchema = z.object({
  * - email: The newly created email object (EmailSchema)
  */
 export const CreateEmailResponseSchema = z.object({
-  email: EmailSchema,
+    email: EmailSchema,
 });

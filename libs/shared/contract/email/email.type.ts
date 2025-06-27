@@ -1,5 +1,14 @@
 import { z } from 'zod';
-import { CreateEmailRequestBodySchema, CreateEmailResponseSchema, EmailSchema, GetEmailsRequestQuerySchema, GetEmailsResponseSchema } from './email.schema';
+import {
+    CreateEmailRequestBodySchema,
+    CreateEmailResponseSchema,
+    EmailSchema,
+    emailString,
+    GetEmailsRequestQuerySchema,
+    GetEmailsResponseSchema,
+} from './email.schema';
+
+export type email = z.infer<typeof emailString>;
 
 // Legacy types using plain string IDs
 export type Email = z.infer<typeof EmailSchema>;
