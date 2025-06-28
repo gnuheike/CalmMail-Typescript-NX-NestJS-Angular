@@ -5,9 +5,18 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "types": [
+      "jest",
+      "node"
+    ]
   },
-  "exclude": [",**/*.spec.ts",
-    "test-setup.ts", "jest.config.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "exclude": [
+    ",**/*.spec.ts",
+    "test-setup.ts",
+    "jest.config.ts",
+    "**/*.test.ts"
+  ],
+  "include": [
+    "**/*.ts"
+  ]
 }

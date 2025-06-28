@@ -1,7 +1,8 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { SEND_EMAIL_COMMAND_TYPE, SendEmailCommand } from './send-email.command';
-import { EmailEntity, EmailRepositoryPort, LoggerPort } from '@calm-mail/frontend-domain';
+import { EmailEntity, EmailRepositoryPort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

@@ -1,5 +1,5 @@
-import { LogMessage } from '../logger';
 import { Signal, WritableSignal } from '@angular/core';
+import { LogMessage } from '../logger';
 
 export interface AsyncStateApi<T> {
     data: Signal<T | null>;

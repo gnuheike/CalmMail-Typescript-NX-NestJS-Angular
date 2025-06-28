@@ -1,8 +1,9 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { REGISTER_COMMAND_TYPE, RegisterCommand } from './register.command';
-import { AuthModel, AuthPersistencePort, AuthRepositoryPort, AuthStatePort, LoggerPort, mapAuthResponseToVm } from '@calm-mail/frontend-domain';
+import { AuthModel, AuthPersistencePort, AuthRepositoryPort, AuthStatePort, mapAuthResponseToVm } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

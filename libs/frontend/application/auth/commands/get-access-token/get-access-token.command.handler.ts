@@ -1,7 +1,8 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { GET_ACCESS_TOKEN_COMMAND_TYPE, GetAccessTokenCommand } from './get-access-token.command';
-import { AuthStatePort, LoggerPort } from '@calm-mail/frontend-domain';
+import { AuthStatePort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

@@ -1,8 +1,9 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { LOGIN_COMMAND_TYPE, LoginCommand } from './login.command';
-import { AuthModel, AuthPersistencePort, AuthRepositoryPort, AuthStatePort, LoggerPort, mapAuthResponseToVm } from '@calm-mail/frontend-domain';
+import { AuthModel, AuthPersistencePort, AuthRepositoryPort, AuthStatePort, mapAuthResponseToVm } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',
@@ -21,10 +22,7 @@ export class LoginCommandHandler implements CommandHandler<LoginCommand> {
             const { user, tokens } = mapAuthResponseToVm(response);
             const authModel = new AuthModel(true, user, tokens);
 
-            await Promise.all([
-                this.state.setState(authModel),
-                this.storage.save(authModel)
-            ]);
+            await Promise.all([this.state.setState(authModel), this.storage.save(authModel)]);
         } catch (error) {
             await this.logger.error('Login failed', error);
             throw new Error('Authentication failed. Please check your credentials and try again.');

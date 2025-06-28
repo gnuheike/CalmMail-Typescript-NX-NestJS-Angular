@@ -1,4 +1,4 @@
-import { LoggerPort, LogMessage } from '@calm-mail/frontend-domain';
+import { LoggerPort, LogMessage } from '@calm-mail/frontend-shared';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })

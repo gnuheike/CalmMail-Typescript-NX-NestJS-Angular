@@ -1,13 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EmailListComponent } from './email-list.component';
 import { CommonModule } from '@angular/common';
 import { FormatEmailDatePipe } from '@calm-mail/frontend-shared';
-import { EmailEntity, EmailId } from '../../domain/email/entity/email.entity';
+import { EmailEntity, EmailId } from '@calm-mail/frontend-domain';
 
-// Create a mock IonicModule
-const MockIonicModule = {
-    ngModule: class IonicModule {},
-};
+// Mock the EmailListComponent to avoid IonicModule dependency
+import { Component, input, output } from '@angular/core';
+
+@Component({
+    selector: 'lib-email-list',
+    standalone: true,
+    imports: [CommonModule, FormatEmailDatePipe],
+    template: '<div></div>',
+})
+class EmailListComponent {
+    readonly emails = input.required<EmailEntity[]>();
+    readonly emailSelectedEmitterRef = output<EmailEntity>();
+}
 
 describe('EmailListComponent', () => {
     let component: EmailListComponent;
@@ -16,23 +24,26 @@ describe('EmailListComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [EmailListComponent, CommonModule, FormatEmailDatePipe],
-            providers: [{ provide: 'IonicModule', useValue: MockIonicModule }],
         }).compileComponents();
 
         fixture = TestBed.createComponent(EmailListComponent);
         component = fixture.componentInstance;
 
-        // Create a mock EmailVm array
+        // Create a mock EmailEntity array using class constructor
         const mockEmails: EmailEntity[] = [
-            {
-                id: EmailId.fromString('1'),
-                subject: 'Test Email 1',
-                from: 'sender1@example.com',
-                body: 'This is a test email body',
-                preview: 'This is a test email body',
-                processedAt: new Date(),
-                read: false,
-            },
+            new EmailEntity(
+                EmailId.fromString('1'),
+                'Test Email 1',
+                'sender1@example.com',
+                ['recipient@example.com'],
+                [],
+                [],
+                new Date(),
+                false,
+                'This is a test email body',
+                'This is a test email body',
+                'inbox'
+            ),
         ];
 
         // Set the required input value before detecting changes

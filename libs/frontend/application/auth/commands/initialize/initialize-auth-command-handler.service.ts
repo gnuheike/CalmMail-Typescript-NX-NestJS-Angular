@@ -1,9 +1,10 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { INITIALIZE_AUTH_COMMAND_TYPE, InitializeAuthCommand } from './initialize-auth.command';
-import { AuthPersistencePort, AuthStatePort, LoggerPort } from '@calm-mail/frontend-domain';
+import { AuthPersistencePort, AuthStatePort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
 import { RefreshTokenCommandHandler } from '../refresh-token/refresh-token.command.handler';
 import { RefreshTokenCommand } from '../refresh-token/refresh-token.command';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

@@ -1,7 +1,8 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { SAVE_DRAFT_COMMAND_TYPE, SaveDraftCommand } from './save-draft.command';
-import { EmailEntity, EmailRepositoryPort, LoggerPort } from '@calm-mail/frontend-domain';
+import { EmailEntity, EmailRepositoryPort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

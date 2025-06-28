@@ -51,7 +51,21 @@ export class EmailEntity {
             email.read,
             email.body,
             email.body.substring(0, 100), // preview is first 100 chars of body
-            email.folderId
+            email.folderId,
         );
     }
 }
+
+export const mockEmail = new EmailEntity(
+    EmailId.fromString('1'),
+    'mockSubject',
+    'from@test.com',
+    ['to@test.com'],
+    ['cc@test.com'],
+    ['bcc@test.com'],
+    new Date(),
+    true,
+    'mockBody',
+    'mockPreview',
+    '1',
+);

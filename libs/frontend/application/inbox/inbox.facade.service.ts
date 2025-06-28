@@ -1,7 +1,8 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { EmailStateService, FolderEntity, FolderStateService } from '@calm-mail/frontend-domain';
+import { FolderEntity } from '@calm-mail/frontend-domain';
 import { SelectFolderCommandHandler } from './commands/select-folder/select-folder.command-handler';
 import { SelectFolderCommand } from './commands/select-folder/select-folder.command';
+import { EmailStateService, FolderStateService } from '../state';
 
 @Injectable()
 export class InboxFacade {

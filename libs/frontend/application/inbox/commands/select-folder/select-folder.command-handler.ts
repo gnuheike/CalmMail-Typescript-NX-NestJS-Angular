@@ -1,7 +1,8 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { SELECT_FOLDER_COMMAND_TYPE, SelectFolderCommand } from './select-folder.command';
-import { EmailStateService, LoggerPort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
+import { LoggerPort } from '@calm-mail/frontend-shared';
+import { EmailStateService } from '../../../state';
 
 @Injectable({
     providedIn: 'root',

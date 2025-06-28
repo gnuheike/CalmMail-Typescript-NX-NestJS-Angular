@@ -2,11 +2,11 @@ import {
     consoleLoggerProvider,
     inMemoryAuthProvider,
     inMemoryEmailRepositoryProvider,
-    inMemoryFolderRepositoryProvider,
-    staticFolderIconsProvider
+    inMemoryFolderRepositoryProvider
 } from '@calm-mail/frontend-adapter';
 import { Provider } from '@angular/core';
 import { environment } from '../environment/environment';
+import { staticFolderIconsProvider } from '@calm-mail/frontend-ui';
 
 /**
  * An array of providers used for the production environment.

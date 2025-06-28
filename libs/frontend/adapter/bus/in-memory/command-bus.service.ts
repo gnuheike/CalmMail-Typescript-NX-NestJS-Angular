@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { from, of, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
-import { LoggerPort } from '@calm-mail/frontend-domain';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 import { Command, CommandBus, CommandHandler, CommandResult } from '@calm-mail/shared-domain';
 import { COMMAND_HANDLER_TOKEN } from './command-bus.provider';
 

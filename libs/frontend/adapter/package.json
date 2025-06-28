@@ -6,7 +6,9 @@
   "main": "./index.cjs",
   "types": "./index.d.ts",
   "peerDependencies": {
-    "@calm-mail/frontend-core-ports": "*",
-    "@calm-mail/contract": "*"
+    "@calm-mail/frontend-domain": "*",
+    "@calm-mail/shared-domain": "*",
+    "@calm-mail/contract": "*",
+    "@calm-mail/frontend-shared": "*"
   }
 }

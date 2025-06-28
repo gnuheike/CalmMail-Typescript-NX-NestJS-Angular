@@ -1,7 +1,8 @@
 import { CommandHandler } from '@calm-mail/shared-domain';
 import { LOGOUT_COMMAND_TYPE, LogoutCommand } from './logout.command';
-import { AuthPersistencePort, AuthStatePort, LoggerPort } from '@calm-mail/frontend-domain';
+import { AuthPersistencePort, AuthStatePort } from '@calm-mail/frontend-domain';
 import { inject, Injectable } from '@angular/core';
+import { LoggerPort } from '@calm-mail/frontend-shared';
 
 @Injectable({
     providedIn: 'root',

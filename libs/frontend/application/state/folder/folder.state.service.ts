@@ -1,8 +1,6 @@
-import { computed, inject, Injectable } from '@angular/core';
-import { FolderEntity } from '../entity/folder.entity';
-import { FolderRepositoryPort } from '../port/folder.repository.port';
-import { createAsyncState } from '../../store/create-async-state';
-import { LoggerPort } from '../../logger';
+import { inject, Injectable } from '@angular/core';
+import { createAsyncState, LoggerPort } from '@calm-mail/frontend-shared';
+import { FolderEntity, FolderRepositoryPort } from '@calm-mail/frontend-domain';
 
 @Injectable({
     providedIn: 'root',

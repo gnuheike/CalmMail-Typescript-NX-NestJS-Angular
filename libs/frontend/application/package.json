@@ -2,11 +2,11 @@
   "name": "@calm-mail/frontend-application",
   "version": "0.0.2-0",
   "peerDependencies": {
-    "@calm-mail/permanent-storage": "*",
+    "@calm-mail/frontend-domain": "*",
+    "@calm-mail/shared-domain": "*",
     "@calm-mail/contract": "*",
-    "@calm-mail/frontend-core-ports": "*",
-    "@calm-mail/frontend-shared": "*",
-    "@calm-mail/shared-domain": "*"
+    "@calm-mail/frontend-adapter": "*",
+    "@calm-mail/frontend-shared": "*"
   },
   "sideEffects": false
 }
