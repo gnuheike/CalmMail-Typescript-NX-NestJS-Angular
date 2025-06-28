@@ -15,7 +15,7 @@ maintaining a consistent user experience across all platforms.
 - **Inbox Management**: View, read, and organize incoming emails
 - **Email Composition**: Create, edit, and send emails with basic formatting
 - **Draft System**: Save work-in-progress emails for later completion
-- **Email Organization**: Move emails between inbox, sent, and trash foldersResponse
+- **Email Organization**: Move emails between inbox, sent, and trash folders
 - **Read Status**: Mark emails as read/unread for better tracking
 
 ### Account Management
@@ -47,22 +47,34 @@ calm-mail/
 ├── apps/
 │   ├── web/              # Web app (Angular + Ionic)
 │   └── server/           # NestJS backend
-├── shared/
-│   ├── contract/         # Contract between frontend and backend
-│   └── domain/           # Domain models and business logic
-├── frontend/
-│   └── platform/         # Platform-specific frontend code
+├── libs/
+│   ├── shared/
+│   │   ├── contract/     # Contract between frontend and backend
+│   │   └── domain/       # Domain models and business logic
+│   ├── frontend/
+│   │   ├── adapter/      # Adapters for external services
+│   │   ├── application/  # Application logic and state management
+│   │   ├── domain/       # Domain models and business logic
+│   │   ├── shared/       # Shared utilities and components
+│   │   └── ui/           # UI components
+│   ├── backend/
+│   │   ├── domain/       # Backend domain models
+│   │   └── use-case-in-memory-adapter/ # In-memory adapters for use cases
+│   └── permanent-storage/ # Persistent storage implementation
+│       ├── Application/  # Application layer for storage
+│       ├── Domain/       # Domain models for storage
+│       └── Infrastructure/ # Infrastructure implementation for storage
 ```
 
 ### Technology Stack
 
-- **Frontend**: Angular + Ionic
-- **Desktop**: Electron
-- **Mobile**: Capacitor
-- **Backend**: NestJS (Clean Architecture + DDD)
-- **Monorepo**: Nx Workspace
-- **Database**: IndexedDB (client) + PostgreSQL (server)
-- **API Communication**: tRPC for type-safe API communication
+- **Frontend**: Angular 20 + Ionic 8
+- **Desktop**: Electron 36
+- **Mobile**: Capacitor 7
+- **Backend**: NestJS 11 (Clean Architecture + DDD)
+- **Monorepo**: Nx Workspace 21
+- **Storage**: @ionic/storage-angular
+- **API Communication**: ts-rest for type-safe API communication
 
 ### Architecture Highlights
 
@@ -76,8 +88,8 @@ calm-mail/
 ### Prerequisites
 
 - Node.js (v18 or later)
-- npm or Bun package manager
-- PostgreSQL (for server-side storage)
+- Bun package manager (recommended)
+- Nx CLI (`npm install -g nx` or `bun install -g nx`)
 
 ### Installation
 
@@ -91,17 +103,18 @@ cd calm-mail
 2. Install dependencies:
 
 ```sh
-npm install
-# or if using Bun
+# Using Bun (recommended)
 bun install
+
+# Or using npm
+npm install
 ```
 
 3. Build the project:
 
 ```sh
-npm run build-all
-# or
-nx run-many --target=build --all
+# Build all projects
+nx run-many --target=build --all --parallel
 ```
 
 ### Running the Application
@@ -111,14 +124,20 @@ nx run-many --target=build --all
 To run the web application in development mode:
 
 ```sh
-npm run serve
-# or
+# Using npm scripts
+npm run web:serve
+
+# Or using nx directly
 nx serve web
 ```
 
 To run the server in development mode:
 
 ```sh
+# Using npm scripts
+npm run server:serve
+
+# Or using nx directly
 nx serve server
 ```
 
@@ -136,9 +155,23 @@ nx build server --configuration=production
 Run all tests:
 
 ```sh
-npm run test-all
+# Run all tests with coverage
+npm run ci:test
+
+# Generate merged coverage report
+npm run ci:test-coverage-merge
+npm run ci:generate-coverage-report
+```
+
+### Troubleshooting
+
+If you encounter build issues:
+
+```sh
+# Reset Nx cache
+npm run reset
 # or
-nx run-many --target=test --all
+bun reset
 ```
 
 ## Development Status
@@ -147,8 +180,7 @@ CalmMail is currently in Phase 1 (MVP) with the following focus:
 
 - Basic email reading and sending
 - Single account support
-- Desktop-first development
-- Local storage implementation
+- Web-first development
 
 Future phases will include:
 
@@ -160,7 +192,3 @@ Future phases will include:
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
