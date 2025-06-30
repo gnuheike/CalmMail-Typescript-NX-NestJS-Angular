@@ -1,14 +1,14 @@
 import { z } from 'zod';
 import {
+    CreateEmailAccountSchema,
+    EmailAccountSchema,
     EmailProviderEnum,
     ImapConfigSchema,
-    SmtpConfigSchema,
-    EmailAccountSchema,
-    CreateEmailAccountSchema,
-    UpdateEmailAccountSchema,
     SetDefaultEmailAccountSchema,
-    TestConnectionSchema,
+    SmtpConfigSchema,
     TestConnectionResponseSchema,
+    TestConnectionSchema,
+    UpdateEmailAccountSchema,
 } from './email-account.schema';
 import { ErrorResponse } from '../error-response';
 
@@ -35,6 +35,6 @@ export type TestConnectionRequest = z.infer<typeof TestConnectionSchema>;
 export type TestConnectionResponse = z.infer<typeof TestConnectionResponseSchema>;
 
 // Response types for list accounts
-export type ListAccountsResponse = {
+export interface ListAccountsResponse {
     accounts: EmailAccount[];
-};
+}
