@@ -9,8 +9,16 @@ guidelines is crucial for maintaining a clean, scalable, and maintainable codeba
 **Your Role:** You are an expert AI software engineer. Your goal is to write clean, performant, and maintainable code
 that aligns with the principles and patterns outlined below.
 
-**Project CalmMail:** A cross-platform email client designed for a calm and focused user experience. It is built as a
-monorepo to maximize code sharing and maintain consistency across web, mobile, and desktop platforms.
+**Project CalmMail:** A lightweight, cross-platform email client application that provides essential email functionality across
+desktop and mobile devices. The application focuses on simplicity, reliability, and seamless synchronization while
+maintaining a consistent user experience across all platforms.
+
+### Key Features
+
+- **Email Management**: Inbox management, email composition, draft system, organization, read status tracking
+- **Account Management**: Multi-account support (IMAP/POP3), secure authentication, account settings
+- **Synchronization**: Cross-device sync, offline mode, real-time updates
+- **User Interface**: Responsive design, dark/light themes, intuitive navigation
 
 ---
 
@@ -19,40 +27,79 @@ monorepo to maximize code sharing and maintain consistency across web, mobile, a
 The project is built upon the principles of **Clean Architecture** and **Separation of Concerns (SoC)**. This means we
 strictly separate different layers of the application to ensure that business logic is independent of frameworks and
 external agencies (like databases or UIs).
+
 The project follows **Clean Architecture** principles with clear separation of concerns:
 
-1. **Domain Layer** (`shared/domain`): Core business logic and models with zero external dependencies
-2. **Application Layer** (`shared/contract`, `apps/server`, `apps/web`): Orchestrates data flow between layers
-3. **Infrastructure Layer** (`apps/server`, `apps/web`): External frameworks and libraries
+1. **Domain Layer**: Core business logic and models with zero external dependencies
+   - `libs/frontend/domain/` - Frontend domain models and business logic
+   - `libs/backend/domain/` - Backend domain models
+   - `libs/shared/domain/` - Shared domain models
+
+2. **Application Layer**: Orchestrates data flow between layers
+   - `libs/frontend/application/` - Application logic and state management
+   - `libs/shared/contract/` - Contract between frontend and backend
+   - `libs/permanent-storage/Application/` - Application layer for storage
+
+3. **Infrastructure Layer**: External frameworks and libraries
+   - `apps/web/` - Angular + Ionic web application
+   - `apps/server/` - NestJS backend
+   - `libs/frontend/adapter/` - Adapters for external services
+   - `libs/permanent-storage/Infrastructure/` - Infrastructure implementation for storage
 
 ## 3. Technology Stack
 
-| Area           | Technologies                      |
-|----------------|-----------------------------------|
-| Monorepo       | Nx with Bun                       |
-| Backend        | NestJS (v11+)                     |
-| Frontend       | Angular (v20+), Ionic (v8+)       |
-| API            | ts-rest with Zod schemas          |
-| Mobile/Desktop | Capacitor (iOS/Android), Electron |
-| Testing        | Jest                              |
+| Area           | Technologies                                |
+|----------------|---------------------------------------------|
+| Monorepo       | Nx Workspace 21.2.1 with Bun                |
+| Backend        | NestJS 11.1.3                               |
+| Frontend       | Angular 20.0.4, Ionic 8.6.2                 |
+| API            | ts-rest 3.52.1 with Zod 3.25.67 schemas     |
+| Mobile         | Capacitor 7.4.0 (iOS/Android)               |
+| Desktop        | Electron 36.5.0                             |
+| Storage        | @ionic/storage-angular 4.0.0                |
+| Testing        | Jest 29.7.0                                 |
 
 ## Project Structure
 
 ```
-apps/
-  server/       # NestJS backend application
-  web/          # Angular frontend application
-libs/
-  backend/      # Backend-specific libraries
-  frontend/     # Frontend-specific libraries
-  shared/       # Shared code between frontend and backend
+calm-mail/
+├── apps/
+│   ├── web/              # Web app (Angular + Ionic)
+│   └── server/           # NestJS backend
+├── libs/
+│   ├── shared/
+│   │   ├── contract/     # Contract between frontend and backend
+│   │   └── domain/       # Domain models and business logic
+│   ├── frontend/
+│   │   ├── adapter/      # Adapters for external services
+│   │   ├── application/  # Application logic and state management
+│   │   ├── domain/       # Domain models and business logic
+│   │   ├── shared/       # Shared utilities and components
+│   │   └── ui/           # UI components
+│   ├── backend/
+│   │   ├── domain/       # Backend domain models
+│   │   └── use-case-in-memory-adapter/ # In-memory adapters for use cases
+│   └── permanent-storage/ # Persistent storage implementation
+│       ├── Application/  # Application layer for storage
+│       ├── Domain/       # Domain models for storage
+│       └── Infrastructure/ # Infrastructure implementation for storage
 ```
 
 ## Development Workflow
 
+### Prerequisites
+
+- Node.js (v18 or later)
+- Bun package manager (recommended)
+- Nx CLI (`npm install -g nx` or `bun install -g nx`)
+
 ### Setup and Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/your-username/calm-mail.git
+cd calm-mail
+
 # Install dependencies
 bun install
 
@@ -70,8 +117,12 @@ nx test <project-name>
 nx test server
 nx test shared-domain
 
-# Run all tests
-nx run-many --target=test --all
+# Run all tests with coverage
+npm run ci:test
+
+# Generate merged coverage report
+npm run ci:test-coverage-merge
+npm run ci:generate-coverage-report
 ```
 
 ### Building
@@ -84,13 +135,15 @@ nx build server
 nx build web
 
 # Build all projects
-nx run-many --target=build --all
+nx run-many --target=build --all --parallel
 ```
 
 ### Troubleshooting
 
 ```bash
 # Clear Nx cache if you encounter build issues
+npm run reset
+# or
 bun reset
 ```
 
@@ -132,6 +185,23 @@ The project uses ESLint with configurations for TypeScript and Angular:
 - Fix all linting issues before committing code
 - Maximum function size: 50 lines
 - Maximum cyclomatic complexity: 10
+- Maximum depth: 4
+- Filename convention: kebab-case
+
+## Development Status
+
+CalmMail is currently in Phase 1 (MVP) with the following focus:
+
+- Basic email reading and sending
+- Single account support
+- Web-first development
+
+Future phases will include:
+
+- Multi-platform support (mobile apps)
+- Multi-account management
+- Cross-device synchronization
+- Enhanced features (advanced search, filtering, etc.)
 
 ## Additional Resources
 
@@ -140,3 +210,6 @@ The project uses ESLint with configurations for TypeScript and Angular:
 - [Angular Documentation](https://angular.dev)
 - [ts-rest Documentation](https://ts-rest.com)
 - [Bun Documentation](https://bun.sh)
+- [Ionic Documentation](https://ionicframework.com/docs)
+- [Capacitor Documentation](https://capacitorjs.com/docs)
+- [Electron Documentation](https://www.electronjs.org/docs)
