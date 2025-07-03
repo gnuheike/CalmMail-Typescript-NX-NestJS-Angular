@@ -16,20 +16,20 @@ export class FolderId extends ValueObject<string> {
  *
  * Properties:
  * - id: Unique identifier (FolderId value object)
- * - name: Folder type (inbox, sent, drafts, trash, or custom)
- * - displayName: User-friendly name for the folder
+ * - name: User-facing display name for the folder
+ * - role: System role of the folder (inbox, sent, etc.) or null for custom folders
  * - unreadCount: Number of unread emails in the folder
  * - totalCount: Total number of emails in the folder
- * - isDefault: Whether this is a system default folder
  */
 export class FolderEntity {
     constructor(
         public readonly id: FolderId,
         public readonly name: string,
-        public readonly displayName: string,
+        public readonly role: string | null,
         public readonly unreadCount: number,
         public readonly totalCount: number,
-        public readonly isDefault: boolean,
+        public readonly sizeInBytes?: number,
+        public readonly lastSyncAt?: Date | null,
         public readonly icon?: string,
     ) {}
 }

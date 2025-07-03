@@ -31,7 +31,7 @@ export class InMemoryGetFoldersUseCase extends GetFoldersUseCase {
 
             // Filter out custom folders if requested
             if (input.includeCustom === false) {
-                filteredFolders = filteredFolders.filter((folder) => folder.isDefault);
+                filteredFolders = filteredFolders.filter((folder) => folder.role !== null);
             }
         }
 

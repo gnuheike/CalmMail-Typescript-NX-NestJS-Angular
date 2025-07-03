@@ -1,32 +1,35 @@
 import z from 'zod';
 
 // libs/shared/contract/email-account/email-account.schema.ts
-export const EmailProviderEnum = z.string();
-
 export const ImapConfigSchema = z.object({
     host: z.string().min(1),
     port: z.number().int().positive(),
     secure: z.boolean(),
     username: z.string().min(1),
-    password: z.string().min(1), // Will be encrypted before storage
+    password: z.string().min(1).describe('ENCRYPTED'), // Will be encrypted before storage
 });
+
+// Create a secure version of the IMAP config schema for responses (without password)
+export const SecureImapConfigSchema = ImapConfigSchema.omit({ password: true });
 
 export const SmtpConfigSchema = z.object({
     host: z.string().min(1),
     port: z.number().int().positive(),
     secure: z.boolean(),
     username: z.string().min(1),
-    password: z.string().min(1), // Will be encrypted before storage
+    password: z.string().min(1).describe('ENCRYPTED'), // Will be encrypted before storage
 });
+
+// Create a secure version of the SMTP config schema for responses (without password)
+export const SecureSmtpConfigSchema = SmtpConfigSchema.omit({ password: true });
 
 export const EmailAccountSchema = z.object({
     id: z.string().cuid2(),
     userId: z.string().cuid2(),
     email: z.string().email(),
     displayName: z.string().min(1).max(100),
-    provider: EmailProviderEnum,
     imapConfig: ImapConfigSchema,
-    smtpConfig: SmtpConfigSchema.optional(),
+    smtpConfig: SmtpConfigSchema,
     isActive: z.boolean().default(true),
     isDefault: z.boolean().default(false),
     lastSyncAt: z.date().nullable(),
@@ -34,6 +37,10 @@ export const EmailAccountSchema = z.object({
     syncFrequency: z.number().int().min(5).max(60).default(15), // minutes
     createdAt: z.date(),
     updatedAt: z.date(),
+});
+
+export const EmailAccountIdPathSchema = z.object({
+    id: z.string().cuid2(),
 });
 
 export const CreateEmailAccountSchema = EmailAccountSchema.omit({
@@ -45,22 +52,46 @@ export const CreateEmailAccountSchema = EmailAccountSchema.omit({
 });
 
 export const UpdateEmailAccountSchema = CreateEmailAccountSchema.partial();
-export const SetDefaultEmailAccountSchema = z.object({
-    id: z.string().cuid2(),
+
+// Create the response schema that uses the secure config versions (without passwords)
+export const EmailAccountResponseSchema = EmailAccountSchema.extend({
+    imapConfig: SecureImapConfigSchema,
+    smtpConfig: SecureSmtpConfigSchema,
+});
+
+export const SyncEmailAccountResponseSchema = z.object({
+    jobId: z.string(),
+});
+export const GetEmailAccountSyncStatusResponseSchema = z.object({
+    status: z.enum(['pending', 'completed', 'failed']),
+    progress: z.number().int().min(0).max(100).optional(),
+    message: z.string().optional(),
 });
 
 export const TestConnectionSchema = z.object({
-    connectionType: EmailProviderEnum,
-    config: z.union([ImapConfigSchema, SmtpConfigSchema]),
+    imapConfig: ImapConfigSchema,
+    smtpConfig: SmtpConfigSchema,
 });
 
 export const TestConnectionResponseSchema = z.object({
-    success: z.boolean(),
-    message: z.string(),
-    details: z
-        .object({
-            serverInfo: z.string().optional(),
-            capabilities: z.array(z.string()).optional(),
-        })
-        .optional(),
+    imap: z.object({
+        success: z.boolean(),
+        message: z.string(),
+        details: z
+            .object({
+                serverInfo: z.string().optional(),
+                capabilities: z.array(z.string()).optional(),
+            })
+            .optional(),
+    }),
+    smtp: z.object({
+        success: z.boolean(),
+        message: z.string(),
+        details: z
+            .object({
+                serverInfo: z.string().optional(),
+                capabilities: z.array(z.string()).optional(),
+            })
+            .optional(),
+    }),
 });

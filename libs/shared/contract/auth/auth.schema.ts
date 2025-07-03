@@ -119,3 +119,17 @@ export const LogoutResponseSchema = z.object({
     success: z.boolean(),
     message: z.string(),
 });
+
+/**
+ * Authentication Headers Schema
+ *
+ * Schema for authentication headers required for protected routes.
+ * This schema is used to define the security requirements for protected endpoints.
+ *
+ * Properties:
+ * - authorization: Bearer token for API access (must start with 'Bearer ')
+ */
+export const AuthHeadersSchema = z.object({
+    // ts-rest maps headers to lower-case
+    authorization: z.string().startsWith('Bearer '),
+});

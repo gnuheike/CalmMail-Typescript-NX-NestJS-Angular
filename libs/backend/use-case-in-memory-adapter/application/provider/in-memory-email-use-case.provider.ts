@@ -1,6 +1,6 @@
 import { Provider } from '@nestjs/common';
-import { CreateEmailUseCase, GetEmailsUseCase } from '@calm-mail/backend-domain';
-import { InMemoryCreateEmailUseCase, InMemoryGetEmailsUseCase } from '../../infrastructure/email';
+import { GetEmailsUseCase } from '@calm-mail/backend-domain';
+import { InMemoryGetEmailsUseCase } from '../../infrastructure/email';
 
 /**
  * Provides in-memory implementations of backend use cases
@@ -15,10 +15,6 @@ export function inMemoryEmailUseCaseProviders(): Provider[] {
         {
             provide: GetEmailsUseCase,
             useClass: InMemoryGetEmailsUseCase,
-        },
-        {
-            provide: CreateEmailUseCase,
-            useClass: InMemoryCreateEmailUseCase,
         },
     ];
 }

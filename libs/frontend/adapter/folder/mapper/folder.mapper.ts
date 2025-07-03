@@ -12,10 +12,11 @@ export function mapToFolderVm(folder: Folder): FolderEntity {
     return new FolderEntity(
         FolderId.fromString(folder.id),
         folder.name,
-        folder.displayName,
+        folder.role,
         folder.unreadCount,
         folder.totalCount,
-        folder.isDefault,
+        folder.sizeInBytes,
+        folder.lastSyncAt,
         folder.icon || undefined,
     );
 }

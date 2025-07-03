@@ -1,5 +1,5 @@
 import { Email } from '@calm-mail/contract';
-import { EmailEntity, EmailId } from '@calm-mail/frontend-domain';
+import { EmailEntity, EmailId, AttachmentEntity, AttachmentId } from '@calm-mail/frontend-domain';
 
 /**
  * Maps a domain Email model to an EmailVm view-model.
@@ -10,6 +10,17 @@ import { EmailEntity, EmailId } from '@calm-mail/frontend-domain';
  */
 export function mapToEmailContractToEntity(email: Email): EmailEntity {
     const body = email.body || '';
+    const attachments = (email.attachments || []).map(attachment => 
+        new AttachmentEntity(
+            AttachmentId.fromString(attachment.id),
+            attachment.filename,
+            attachment.contentType,
+            attachment.size,
+            attachment.contentId,
+            attachment.content
+        )
+    );
+
     return new EmailEntity(
         EmailId.fromString(email.id),
         email.subject,
@@ -17,11 +28,14 @@ export function mapToEmailContractToEntity(email: Email): EmailEntity {
         email.to,
         email.cc,
         email.bcc,
-        email.processedAt,
+        email.receivedAt,
+        email.sentAt,
+        email.savedAt,
         email.read,
         body,
         body.substring(0, 100) + (body.length > 100 ? '...' : ''),
         email.folderId,
+        attachments,
     );
 }
 

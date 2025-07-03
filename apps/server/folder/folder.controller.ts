@@ -1,13 +1,12 @@
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { Controller } from '@nestjs/common';
 import { folderContract } from '@calm-mail/contract';
-import { CreateFolderUseCase, GetFolderStatsUseCase, GetFoldersUseCase } from '@calm-mail/backend-domain';
+import { CreateFolderUseCase, GetFoldersUseCase } from '@calm-mail/backend-domain';
 
 @Controller()
 export class FolderController {
     constructor(
         private readonly getFoldersUseCase: GetFoldersUseCase,
-        private readonly getFolderStatsUseCase: GetFolderStatsUseCase,
         private readonly createFolderUseCase: CreateFolderUseCase,
     ) {}
 
@@ -19,13 +18,6 @@ export class FolderController {
         });
     }
 
-    @TsRestHandler(folderContract.getFolderStats)
-    async getFolderStats() {
-        return tsRestHandler(folderContract.getFolderStats, async ({ params }) => {
-            const result = await this.getFolderStatsUseCase.execute(params);
-            return { status: 200, body: result };
-        });
-    }
 
     @TsRestHandler(folderContract.createFolder)
     async createFolder() {

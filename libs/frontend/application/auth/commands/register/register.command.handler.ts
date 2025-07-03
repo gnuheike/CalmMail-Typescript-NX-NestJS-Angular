@@ -4,6 +4,7 @@ import { AuthModel, AuthPersistencePort, AuthRepositoryPort, AuthStatePort, mapA
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { LoggerPort } from '@calm-mail/frontend-shared';
+import { AuthContractMapper } from '@calm-mail/frontend-adapter';
 
 @Injectable({
     providedIn: 'root',
@@ -17,7 +18,8 @@ export class RegisterCommandHandler implements CommandHandler<RegisterCommand> {
 
     async execute(command: RegisterCommand): Promise<void> {
         try {
-            const response = await firstValueFrom(this.repository.register(command.payload));
+            const contractRequest = AuthContractMapper.toContractRegister(command.payload);
+            const response = await firstValueFrom(this.repository.register(contractRequest));
             const { user, tokens } = mapAuthResponseToVm(response);
             const authModel = new AuthModel(true, user, tokens);
 

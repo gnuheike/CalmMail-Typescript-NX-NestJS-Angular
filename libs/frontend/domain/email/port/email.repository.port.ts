@@ -17,4 +17,13 @@ export abstract class EmailRepositoryPort {
      * @returns Promise with the created email response
      */
     abstract createEmail(input: EmailEntity): Promise<EmailEntity>;
+
+    /**
+     * Update an existing email
+     *
+     * @param id ID of the email to update
+     * @param input Partial email entity with fields to update
+     * @returns Promise with the updated email response
+     */
+    abstract updateEmail(id: string, input: Partial<EmailEntity>): Promise<EmailEntity>;
 }

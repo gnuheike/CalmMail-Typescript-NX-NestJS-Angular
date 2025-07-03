@@ -6,6 +6,7 @@ import {
     emailString,
     GetEmailsRequestQuerySchema,
     GetEmailsResponseSchema,
+    UpdateEmailBodySchema,
 } from './email.schema';
 
 export type email = z.infer<typeof emailString>;
@@ -17,3 +18,4 @@ export type GetEmailsRequest = z.infer<typeof GetEmailsRequestQuerySchema>;
 export type GetEmailsResponse = z.infer<typeof GetEmailsResponseSchema>;
 export type CreateEmailRequest = z.infer<typeof CreateEmailRequestBodySchema>;
 export type CreateEmailResponse = z.infer<typeof CreateEmailResponseSchema>;
+export type UpdateEmailRequest = z.infer<typeof UpdateEmailBodySchema>;

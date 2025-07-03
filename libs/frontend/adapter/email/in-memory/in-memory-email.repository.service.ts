@@ -27,4 +27,16 @@ export class InMemoryEmailRepositoryAdapter extends EmailRepositoryPort {
             return input;
         });
     }
+
+    updateEmail(id: string, input: Partial<EmailEntity>): Promise<EmailEntity> {
+        const index = this.emails.findIndex(email => email.id.toString() === id);
+        if (index === -1) {
+            throw new Error('Email not found');
+        }
+
+        const updatedEmail = Object.assign({}, this.emails[index], input);
+        this.emails[index] = updatedEmail;
+
+        return simulateNetworkRequestPromise(() => updatedEmail);
+    }
 }

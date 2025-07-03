@@ -1,6 +1,9 @@
 import { Email } from './email.type';
 import { draftsFolder, familyFolder, inboxFolder, sentFolder, workFolder } from '../folder';
 
+// Mock account ID for all emails
+const mockAccountId = 'clq1234567890account000001';
+
 export const mockEmails: Email[] = [
     // Inbox emails
     {
@@ -8,13 +11,17 @@ export const mockEmails: Email[] = [
         subject: 'Welcome to CalmMail',
         from: 'support@calmmail.com',
         to: ['user@example.com'],
-        processedAt: new Date('2023-06-01T10:00:00Z'),
+        receivedAt: new Date('2023-06-01T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-01T10:00:00Z'),
         body: 'Thank you for choosing CalmMail. We hope you enjoy our calm and focused email experience.',
         isDraft: false,
         cc: [],
         bcc: [],
         read: false,
         folderId: inboxFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
     {
         id: 'clq1234567890email00000002',
@@ -23,11 +30,15 @@ export const mockEmails: Email[] = [
         to: ['user@example.com'],
         cc: ['team@company.com'],
         bcc: [],
-        processedAt: new Date('2023-06-02T10:00:00Z'),
+        receivedAt: new Date('2023-06-02T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-02T10:00:00Z'),
         body: "Let's meet tomorrow at 10 AM to discuss the project progress.",
         isDraft: false,
         read: true,
         folderId: inboxFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
     {
         id: 'clq1234567890email00000003',
@@ -36,11 +47,15 @@ export const mockEmails: Email[] = [
         to: ['user@example.com'],
         cc: [],
         bcc: [],
-        processedAt: new Date('2023-06-03T10:00:00Z'),
+        receivedAt: new Date('2023-06-03T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-03T10:00:00Z'),
         body: 'Hey, I was thinking about our vacation plans. How about we go to the beach next month?',
         isDraft: false,
         read: false,
         folderId: inboxFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
 
     // Sent emails
@@ -51,11 +66,15 @@ export const mockEmails: Email[] = [
         to: ['colleague@company.com'],
         cc: [],
         bcc: [],
-        processedAt: new Date('2023-06-04T10:00:00Z'),
+        receivedAt: null,
+        sentAt: new Date('2023-06-04T10:00:00Z'),
+        savedAt: new Date('2023-06-04T10:00:00Z'),
         body: "I've completed the tasks you assigned. Please review and let me know if any changes are needed.",
         isDraft: false,
         read: true,
         folderId: sentFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
     {
         id: 'clq1234567890email00000005',
@@ -64,11 +83,15 @@ export const mockEmails: Email[] = [
         to: ['friend1@personal.com', 'friend2@personal.com'],
         cc: [],
         bcc: [],
-        processedAt: new Date('2023-06-05T10:00:00Z'),
+        receivedAt: null,
+        sentAt: new Date('2023-06-05T10:00:00Z'),
+        savedAt: new Date('2023-06-05T10:00:00Z'),
         body: 'Would you like to join us for dinner this Saturday at 7 PM?',
         isDraft: false,
         read: true,
         folderId: sentFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
 
     // Draft emails
@@ -79,11 +102,15 @@ export const mockEmails: Email[] = [
         to: ['client@company.com'],
         cc: [],
         bcc: [],
-        processedAt: new Date('2023-06-06T10:00:00Z'),
+        receivedAt: null,
+        sentAt: null,
+        savedAt: new Date('2023-06-06T10:00:00Z'),
         body: 'Here is the project proposal we discussed. [DRAFT - NOT COMPLETE]',
         isDraft: true,
         read: true,
         folderId: draftsFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
 
     // Work folder emails
@@ -94,11 +121,15 @@ export const mockEmails: Email[] = [
         to: ['user@example.com'],
         cc: ['team@company.com'],
         bcc: [],
-        processedAt: new Date('2023-06-07T10:00:00Z'),
+        receivedAt: new Date('2023-06-07T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-07T10:00:00Z'),
         body: 'Please find attached the quarterly financial report.',
         isDraft: false,
         read: false,
         folderId: workFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
     {
         id: 'clq1234567890email00000008',
@@ -107,11 +138,15 @@ export const mockEmails: Email[] = [
         to: ['user@example.com'],
         cc: [],
         bcc: [],
-        processedAt: new Date('2023-06-08T10:00:00Z'),
+        receivedAt: new Date('2023-06-08T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-08T10:00:00Z'),
         body: "We have a new project opportunity with a potential client. Let's discuss it in our next meeting.",
         isDraft: false,
         read: true,
         folderId: workFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
 
     // Family folder emails
@@ -122,10 +157,14 @@ export const mockEmails: Email[] = [
         to: ['user@example.com'],
         cc: ['family@group.com'],
         bcc: [],
-        processedAt: new Date('2023-06-09T10:00:00Z'),
+        receivedAt: new Date('2023-06-09T10:00:00Z'),
+        sentAt: null,
+        savedAt: new Date('2023-06-09T10:00:00Z'),
         body: "We're planning a family reunion next month. Please let me know if you can attend.",
         isDraft: false,
         read: false,
         folderId: familyFolder.id,
+        accountId: mockAccountId,
+        attachments: [],
     },
 ];

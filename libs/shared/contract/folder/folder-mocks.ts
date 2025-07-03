@@ -2,53 +2,53 @@ import { Folder } from './index';
 
 export const inboxFolder: Folder = {
     id: 'clq1234567890abcdefghijklm',
-    name: 'inbox',
-    displayName: 'Inbox',
+    name: 'Inbox',
+    role: 'inbox',
     unreadCount: 3,
     totalCount: 3,
-    isDefault: true,
+    sizeInBytes: 1024 * 1024 * 3, // 3 MB
+    lastSyncAt: new Date('2023-12-01T12:00:00Z'),
 };
 export const sentFolder: Folder = {
     id: 'clq2345678901abcdefghijklm',
-    name: 'sent',
-    displayName: 'sent',
+    name: 'Sent',
+    role: 'sent',
     unreadCount: 0,
     totalCount: 2,
-    isDefault: true,
+    sizeInBytes: 1024 * 1024 * 2, // 2 MB
+    lastSyncAt: new Date('2023-12-01T12:00:00Z'),
 };
 export const draftsFolder: Folder = {
     id: 'clq3456789012abcdefghijklm',
-    name: 'drafts',
-    displayName: 'drafts',
+    name: 'Drafts',
+    role: 'drafts',
     unreadCount: 0,
     totalCount: 1,
-    isDefault: true,
+    sizeInBytes: 1024 * 512, // 512 KB
+    lastSyncAt: new Date('2023-12-01T12:00:00Z'),
 };
 export const trashFolder: Folder = {
     id: 'clq4567890123abcdefghijklm',
-    name: 'trash',
-    displayName: 'trash',
+    name: 'Trash',
+    role: 'trash',
     unreadCount: 0,
     totalCount: 1,
-    isDefault: true,
 };
 
 export const workFolder: Folder = {
     id: 'clq5678901234abcdefghijklm',
-    name: 'custom',
-    displayName: 'Work',
+    name: 'Work',
+    role: null,
     unreadCount: 1,
     totalCount: 2,
-    isDefault: false,
 };
 
 export const familyFolder: Folder = {
     id: 'clq6789012345abcdefghijklm',
-    name: 'custom',
-    displayName: 'Family',
+    name: 'Family',
+    role: null,
     unreadCount: 0,
     totalCount: 1,
-    isDefault: false,
 };
 
 export const mockFolders: Folder[] = [inboxFolder, sentFolder, draftsFolder, trashFolder, workFolder, familyFolder];

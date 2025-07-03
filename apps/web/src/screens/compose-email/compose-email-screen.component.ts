@@ -31,14 +31,15 @@ export class ComposeEmailScreenComponent {
         try {
             this.isSendingEmail.set(true);
 
-            // Get the current user's email from auth state
+            // Get the current user's email and id from auth state
             const userEmail = this.authFacade.currentUserEmail() || '';
-            if (!userEmail) {
-                console.error('User email not available');
+            const userId = this.authFacade.currentUserId()?.getValue() || '';
+            if (!userEmail || !userId) {
+                console.error('User email or ID not available');
                 return;
             }
 
-            await this.composeFacade.sendEmail(userEmail.toString(), formData.to, formData.subject, formData.body, formData.cc, formData.bcc);
+            await this.composeFacade.sendEmail(userId, userEmail.toString(), formData.to, formData.subject, formData.body, formData.cc, formData.bcc);
 
             // Clear the form after successful submission
             this.draftEmail.set(null);
@@ -64,10 +65,11 @@ export class ComposeEmailScreenComponent {
         if (!draft) return;
 
         try {
-            // Get the current user's email from auth state
+            // Get the current user's email and id from auth state
             const userEmail = this.authFacade.currentUserEmail() || '';
-            if (!userEmail) {
-                console.error('User email not available');
+            const userId = this.authFacade.currentUserId()?.getValue() || '';
+            if (!userEmail || !userId) {
+                console.error('User email or ID not available');
                 return;
             }
 
@@ -87,7 +89,7 @@ export class ComposeEmailScreenComponent {
                 .map((e) => e.trim())
                 .filter((e) => e.length > 0);
 
-            await this.composeFacade.saveDraft(userEmail.toString(), to, draft.subject, draft.body, cc, bcc);
+            await this.composeFacade.saveDraft(userId, userEmail.toString(), to, draft.subject, draft.body, cc, bcc);
 
             // Navigate back to inbox after saving
             await this.router.navigate(['/inbox']);

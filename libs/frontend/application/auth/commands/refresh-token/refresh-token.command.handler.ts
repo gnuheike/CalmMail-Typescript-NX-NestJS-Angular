@@ -5,6 +5,7 @@ import { AuthPersistencePort, AuthRepositoryPort, AuthStatePort, mapAuthTokenToV
 import { inject, Injectable } from '@angular/core';
 import { LogoutCommandHandler } from '../logout/logout.command.handler';
 import { LoggerPort } from '@calm-mail/frontend-shared';
+import { AuthContractMapper } from '@calm-mail/frontend-adapter';
 
 @Injectable({
     providedIn: 'root',
@@ -50,8 +51,12 @@ export class RefreshTokenCommandHandler implements CommandHandler<RefreshTokenCo
             // Use refresh token from command payload or from current state
             const refreshToken = command.payload?.refreshToken || currentState.tokens.refreshToken;
 
+            // Create domain request and convert to contract
+            const domainRequest = { refreshToken };
+            const contractRequest = AuthContractMapper.toContractRefreshToken(domainRequest);
+
             // Call repository to refresh token
-            const response = await firstValueFrom(this.repository.refreshToken({ refreshToken }));
+            const response = await firstValueFrom(this.repository.refreshToken(contractRequest));
 
             // Map response to view model
             const tokens = mapAuthTokenToVm(response.tokens);

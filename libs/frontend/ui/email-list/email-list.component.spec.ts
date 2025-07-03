@@ -38,11 +38,14 @@ describe('EmailListComponent', () => {
                 ['recipient@example.com'],
                 [],
                 [],
-                new Date(),
-                false,
-                'This is a test email body',
-                'This is a test email body',
-                'inbox'
+                new Date(), // receivedAt
+                null, // sentAt
+                new Date(), // savedAt
+                false, // read
+                'This is a test email body', // body
+                'This is a test email body', // preview
+                'inbox', // folderId
+                [] // attachments
             ),
         ];
 

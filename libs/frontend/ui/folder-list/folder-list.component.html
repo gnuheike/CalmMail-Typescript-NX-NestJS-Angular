@@ -1,6 +1,6 @@
 <ion-list>
     @for (folder of folders(); track folder.id) {
-        <ion-item [class.active-folder]="folder.name === 'inbox'" [id]="folder.id"
+        <ion-item [class.active-folder]="folder.role === 'inbox'" [id]="folder.id"
                   (click)="folderSelectedEmitterRef.emit(folder)">
             <ion-icon
                     [name]="getFolderIcon(folder)"
@@ -8,7 +8,7 @@
                     [class.unread]="folder.unreadCount > 0">
             </ion-icon>
             <ion-label>
-                {{ folder.displayName }}
+                {{ folder.name }}
                 @if (folder.unreadCount > 0) {
                     <span class="unread-count">({{ folder.unreadCount }})</span>
                 }

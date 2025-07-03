@@ -20,7 +20,9 @@
                 </div>
                 <div class="email-date">
                     <ion-text color="medium">
-                        {{ selectedEmail.processedAt | date:'medium' }}
+                        {{ selectedEmail.receivedAt ? (selectedEmail.receivedAt | date:'medium') : 
+                           selectedEmail.sentAt ? (selectedEmail.sentAt | date:'medium') : 
+                           (selectedEmail.savedAt | date:'medium') }}
                     </ion-text>
                 </div>
             </div>

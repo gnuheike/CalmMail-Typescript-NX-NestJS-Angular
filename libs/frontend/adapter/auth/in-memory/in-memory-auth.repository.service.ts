@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
     AuthResponse,
+    AuthToken,
     LoginRequest,
     RefreshTokenRequest,
     RefreshTokenResponse,
@@ -107,14 +108,12 @@ export class InMemoryAuthRepositoryAdapter extends AuthRepositoryPort {
      * Mock tokens
      * @private
      */
-    private generateTokens(userId: string): {
-        accessToken: string;
-        refreshToken: string;
-        expiresIn: number;
-    } {
+    private generateTokens(userId: string): AuthToken {
         return {
             accessToken: `mock-access-token-${userId}-${Date.now()}`,
             refreshToken: `mock-refresh-token-${userId}-${Date.now()}`,
+            tokenType: 'Bearer',
+            refreshExpiresIn: 3600,
             expiresIn: 3600, // 1 hour in seconds
         };
     }

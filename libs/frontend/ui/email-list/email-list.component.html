@@ -9,7 +9,9 @@
             <div class="email-container">
                 <div class="email-header">
                     <div class="email-sender">{{ email.from }}</div>
-                    <div class="email-date">{{ email.processedAt | formatEmailDate }}</div>
+                    <div class="email-date">{{ email.receivedAt ? (email.receivedAt | formatEmailDate) : 
+                       email.sentAt ? (email.sentAt | formatEmailDate) : 
+                       (email.savedAt | formatEmailDate) }}</div>
                 </div>
                 <div class="email-subject">{{ email.subject }}</div>
                 <div class="email-preview">

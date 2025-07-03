@@ -4,9 +4,7 @@ import {
     CreateFolderResponseSchema,
     FolderSchema,
     GetFoldersRequestSchema,
-    GetFoldersResponseSchema,
-    GetFolderStatsRequestSchema,
-    GetFolderStatsResponseSchema
+    GetFoldersResponseSchema
 } from './folder.schema';
 
 /**
@@ -18,7 +16,5 @@ import {
 export type Folder = z.infer<typeof FolderSchema>;
 export type GetFoldersRequest = z.infer<typeof GetFoldersRequestSchema>;
 export type GetFoldersResponse = z.infer<typeof GetFoldersResponseSchema>;
-export type GetFolderStatsRequest = z.infer<typeof GetFolderStatsRequestSchema>;
-export type GetFolderStatsResponse = z.infer<typeof GetFolderStatsResponseSchema>;
 export type CreateFolderRequest = z.infer<typeof CreateFolderRequestSchema>;
 export type CreateFolderResponse = z.infer<typeof CreateFolderResponseSchema>;

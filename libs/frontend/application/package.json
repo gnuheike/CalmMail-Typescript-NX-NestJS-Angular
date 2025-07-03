@@ -4,7 +4,6 @@
   "peerDependencies": {
     "@calm-mail/frontend-domain": "*",
     "@calm-mail/shared-domain": "*",
-    "@calm-mail/contract": "*",
     "@calm-mail/frontend-adapter": "*",
     "@calm-mail/frontend-shared": "*"
   },
