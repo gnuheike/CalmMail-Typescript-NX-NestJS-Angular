@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { FolderController } from './folder.controller';
-import { inMemoryFolderUseCaseProviders } from '@calm-mail/backend-use-case-in-memory-adapter';
 
 @Module({
     controllers: [FolderController],
-    providers: [...inMemoryFolderUseCaseProviders()],
+    providers: [],
 })
 export class FolderModule {}

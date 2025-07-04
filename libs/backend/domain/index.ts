@@ -1,1 +1,1 @@
-export * from './port/use-case';
+export * from './entity';

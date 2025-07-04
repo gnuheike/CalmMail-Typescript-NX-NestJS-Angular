@@ -1,7 +1,7 @@
 {
   "name": "permanent-storage",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/permanent-storage",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/external/permanent-storage",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -11,11 +11,11 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/libs/permanent-storage",
-        "main": "libs/permanent-storage/index.ts",
-        "tsConfig": "libs/permanent-storage/tsconfig.lib.json",
+        "outputPath": "dist/libs/external/permanent-storage",
+        "main": "libs/external/permanent-storage/index.ts",
+        "tsConfig": "libs/external/permanent-storage/tsconfig.lib.json",
         "assets": [
-          "libs/permanent-storage/*.md"
+          "libs/external/permanent-storage/*.md"
         ],
         "format": [
           "cjs"
@@ -31,7 +31,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "libs/permanent-storage/jest.config.ts"
+        "jestConfig": "libs/external/permanent-storage/jest.config.ts"
       }
     }
   }

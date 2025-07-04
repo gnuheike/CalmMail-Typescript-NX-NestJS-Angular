@@ -4,7 +4,7 @@
   "type": "commonjs",
   "main": "./index.cjs",
   "types": "./index.d.ts",
-  "dependencies": {
-    "@calm-mail/contract": "*"
+  "peerDependencies": {
+    "@calm-mail/shared-domain": "*"
   }
 }

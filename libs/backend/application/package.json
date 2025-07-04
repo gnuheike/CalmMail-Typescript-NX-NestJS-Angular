@@ -1,12 +1,11 @@
 {
-  "name": "@calm-mail/use-case-in-memory-adapter",
+  "name": "@calm-mail/backend-application",
   "version": "0.0.1",
   "private": true,
   "type": "commonjs",
   "main": "./index.js",
   "types": "./index.d.ts",
   "peerDependencies": {
-    "@calm-mail/contract": "*",
-    "@calm-mail/shared-domain": "*"
+    "@calm-mail/contract": "*"
   }
 }

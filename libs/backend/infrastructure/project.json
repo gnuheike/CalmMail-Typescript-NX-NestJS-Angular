@@ -1,0 +1,36 @@
+{
+  "name": "backend-infrastructure",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/backend/infrastructure",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/backend/infrastructure",
+        "tsConfig": "libs/backend/infrastructure/tsconfig.lib.json",
+        "packageJson": "libs/backend/infrastructure/package.json",
+        "main": "libs/backend/infrastructure/index.ts",
+        "assets": [
+          "libs/backend/infrastructure/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
+      "options": {
+        "jestConfig": "libs/backend/infrastructure/jest.config.ts"
+      }
+    }
+  }
+}

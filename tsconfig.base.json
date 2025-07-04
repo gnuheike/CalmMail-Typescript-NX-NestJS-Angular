@@ -25,11 +25,14 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "paths": {
+      "@calm-mail/backend-infrastructure": [
+        "libs/backend/infrastructure/index.ts"
+      ],
+      "@calm-mail/backend-application": [
+        "libs/backend/application/index.ts"
+      ],
       "@calm-mail/backend-domain": [
         "libs/backend/domain/index.ts"
-      ],
-      "@calm-mail/backend-use-case-in-memory-adapter": [
-        "libs/backend/use-case-in-memory-adapter/index.ts"
       ],
       "@calm-mail/contract": [
         "libs/shared/contract/index.ts"
@@ -37,11 +40,11 @@
       "@calm-mail/frontend-adapter": [
         "libs/frontend/adapter/index.ts"
       ],
-      "@calm-mail/frontend-domain": [
-        "libs/frontend/domain/index.ts"
-      ],
       "@calm-mail/frontend-application": [
         "libs/frontend/application/index.ts"
+      ],
+      "@calm-mail/frontend-domain": [
+        "libs/frontend/domain/index.ts"
       ],
       "@calm-mail/frontend-shared": [
         "libs/frontend/shared/index.ts"
@@ -50,7 +53,7 @@
         "libs/frontend/ui/index.ts"
       ],
       "@calm-mail/permanent-storage": [
-        "libs/permanent-storage/index.ts"
+        "libs/external/permanent-storage/index.ts"
       ],
       "@calm-mail/shared-domain": [
         "libs/shared/domain/index.ts"

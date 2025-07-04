@@ -1,6 +1,6 @@
 export default {
     displayName: 'permanent-storage',
-    preset: '../../jest.preset.js',
+    preset: '../../../jest.preset.js',
     setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
     coverageDirectory: '../../coverage/libs/permanent-storage',
     transform: {

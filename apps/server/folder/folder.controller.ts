@@ -1,7 +1,7 @@
 import { TsRestHandler, tsRestHandler } from '@ts-rest/nest';
 import { Controller } from '@nestjs/common';
 import { folderContract } from '@calm-mail/contract';
-import { CreateFolderUseCase, GetFoldersUseCase } from '@calm-mail/backend-domain';
+import { CreateFolderUseCase, GetFoldersUseCase } from '@calm-mail/backend-application';
 
 @Controller()
 export class FolderController {
@@ -17,7 +17,6 @@ export class FolderController {
             return { status: 200, body: result };
         });
     }
-
 
     @TsRestHandler(folderContract.createFolder)
     async createFolder() {
