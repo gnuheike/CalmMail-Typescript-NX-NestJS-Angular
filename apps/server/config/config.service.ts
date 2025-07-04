@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Config } from './config.interface';
+import { Config, Environment } from './config.interface';
 
 @Injectable()
 export class AppConfigService {
@@ -12,5 +12,9 @@ export class AppConfigService {
 
     get jwtExpiresIn(): string {
         return this.configService.get('jwt.expiresIn', { infer: true });
+    }
+
+    get environment(): Environment {
+        return this.configService.get('environment', { infer: true });
     }
 }

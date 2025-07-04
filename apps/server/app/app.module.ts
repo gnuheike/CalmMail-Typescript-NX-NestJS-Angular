@@ -3,6 +3,7 @@ import { EmailModule } from '../email/email.module';
 import { FolderModule } from '../folder/folder.module';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { LoggingModule } from '../logging/loading-module.provider';
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
                 },
             ],
         }),
+        LoggingModule,
         EmailModule,
         FolderModule,
     ],
