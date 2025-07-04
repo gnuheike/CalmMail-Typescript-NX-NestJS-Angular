@@ -1,5 +1,16 @@
-import { GetEmailsRequest, GetEmailsResponse } from '@calm-mail/contract';
+import { Email, GetEmailsRequest, GetEmailsResponse } from '@calm-mail/contract';
+import { Injectable } from '@nestjs/common';
 
-export abstract class GetEmailsUseCase {
-  abstract execute(input: GetEmailsRequest): Promise<GetEmailsResponse>;
+@Injectable()
+export class GetEmailsUseCase {
+    execute(input: GetEmailsRequest): Promise<GetEmailsResponse> {
+        const pagination = {
+            page: input.page,
+            limit: input.limit,
+            totalItems: 0,
+            totalPages: 0,
+        };
+        const emails: Email[] = [];
+        return Promise.resolve({ pagination, emails });
+    }
 }

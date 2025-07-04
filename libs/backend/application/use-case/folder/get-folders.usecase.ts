@@ -1,11 +1,9 @@
 import { GetFoldersRequest, GetFoldersResponse } from '@calm-mail/contract';
+import { Injectable } from '@nestjs/common';
 
-/**
- * Get Folders Use Case
- *
- * Abstract class defining the contract for retrieving folders.
- * Implementations will handle the actual retrieval of folders from the data source.
- */
-export abstract class GetFoldersUseCase {
-  abstract execute(input?: GetFoldersRequest): Promise<GetFoldersResponse>;
+@Injectable()
+export class GetFoldersUseCase {
+    execute(input?: GetFoldersRequest): Promise<GetFoldersResponse> {
+        throw new Error('Method not implemented.');
+    }
 }
