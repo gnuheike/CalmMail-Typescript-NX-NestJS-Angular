@@ -35,6 +35,10 @@ export default [
                     allow: [],
                     depConstraints: [
                         {
+                            sourceTag: 'domain',
+                            onlyDependOnLibsWithTags: ['shared-domain'],
+                        },
+                        {
                             sourceTag: '*',
                             onlyDependOnLibsWithTags: ['*'],
                         },

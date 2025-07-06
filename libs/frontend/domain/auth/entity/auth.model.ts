@@ -1,5 +1,6 @@
 import { AuthResponse, AuthToken } from '@calm-mail/contract';
-import { UserEmail, UserEntity, UserId, UserName } from '../../user/entity/user.entity';
+import { UserEntity, UserName } from '../../user/entity/user.entity';
+import { EmailVO, IdVO, UserIdType } from '@calm-mail/shared-domain';
 
 /**
  * Auth tokens view model for the presentation layer
@@ -57,8 +58,9 @@ export class AuthModel {
  * @returns The mapped user and token view models
  */
 export function mapAuthResponseToVm(response: AuthResponse): { user: UserEntity; tokens: AuthTokenModel } {
+    const userID = IdVO.create(response.user.id, 'UserId') as IdVO<UserIdType>;
     return {
-        user: new UserEntity(new UserId(response.user.id), new UserEmail(response.user.email), new UserName(response.user.name || '')),
+        user: new UserEntity(userID, EmailVO.create(response.user.email), new UserName(response.user.name || '')),
         tokens: mapAuthTokenToVm(response.tokens),
     };
 }

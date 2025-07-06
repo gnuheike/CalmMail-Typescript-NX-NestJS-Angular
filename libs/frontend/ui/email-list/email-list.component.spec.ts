@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CommonModule } from '@angular/common';
-import { FormatEmailDatePipe } from '@calm-mail/frontend-shared';
 import { EmailEntity, EmailId } from '@calm-mail/frontend-domain';
 
 // Mock the EmailListComponent to avoid IonicModule dependency
 import { Component, input, output } from '@angular/core';
+import { FormatEmailDatePipe } from '../pipe';
 
 @Component({
     selector: 'lib-email-list',
     standalone: true,
-    imports: [CommonModule, FormatEmailDatePipe],
+    imports: [CommonModule],
     template: '<div></div>',
 })
 class EmailListComponent {
@@ -45,7 +45,7 @@ describe('EmailListComponent', () => {
                 'This is a test email body', // body
                 'This is a test email body', // preview
                 'inbox', // folderId
-                [] // attachments
+                [], // attachments
             ),
         ];
 

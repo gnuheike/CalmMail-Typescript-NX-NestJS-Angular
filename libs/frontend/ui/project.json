@@ -22,7 +22,10 @@
           "tsConfig": "libs/frontend/ui/tsconfig.lib.json"
         }
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "dependsOn": [
+        "^build"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
@@ -36,5 +39,8 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     }
-  }
+  },
+  "implicitDependencies": [
+    "libs/frontend/shared"
+  ]
 }
